@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TesteBugCode</title>
+    <meta
+      name="description"
+      content="Estaçao Genesis - O Futuro da Meteorologia para Agricultores"
+    />
+    <meta
+      name="keywords"
+      content="Meteorologia, Agricultura, Inovação, Tecnologia"
+    />
+    <meta name="author" content="Equipe 3101" />
+    <link rel="stylesheet" href="/assets/CSS/style.css" />
+    <link rel="stylesheet" href="/assets/CSS/H-F.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/CSS/gemeo.css" />
+  </head>
+
+  <body style="background-color: rgb(204, 129, 42)">
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">Logo</a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="index.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Início</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="dashboard.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="chatbot.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>ChatBot</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="gemeo.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Gemeo Digital</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Close button -->
+          <div class="nav__close" id="nav-close">
+            <i class="ri-close-large-line"></i>
+          </div>
+
+          <div class="nav__social">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-instagram-line"></i>
+            </a>
+
+            <a
+              href="https://github.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a
+              href="https://dribbble.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-dribbble-line"></i>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-linkedin-box-line"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+      </nav>
+    </header>
+
+    <button id="BotaoTemperaturaUmidadePressao" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#DDDDDD" d="M64 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM64 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48-208a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>
+    </button>
+    <button id="BotaoPluviometro" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#DDDDDD" d="M96 320c-53 0-96-43-96-96c0-42.5 27.6-78.6 65.9-91.2C64.7 126.1 64 119.1 64 112C64 50.1 114.1 0 176 0c43.1 0 80.5 24.3 99.2 60c14.7-17.1 36.5-28 60.8-28c44.2 0 80 35.8 80 80c0 5.5-.6 10.8-1.6 16c.5 0 1.1 0 1.6 0c53 0 96 43 96 96s-43 96-96 96L96 320zM81.5 353.9c12.2 5.2 17.8 19.3 12.6 31.5l-48 112c-5.2 12.2-19.3 17.8-31.5 12.6S-3.3 490.7 1.9 478.5l48-112c5.2-12.2 19.3-17.8 31.5-12.6zm120 0c12.2 5.2 17.8 19.3 12.6 31.5l-48 112c-5.2 12.2-19.3 17.8-31.5 12.6s-17.8-19.3-12.6-31.5l48-112c5.2-12.2 19.3-17.8 31.5-12.6zm244.6 31.5l-48 112c-5.2 12.2-19.3 17.8-31.5 12.6s-17.8-19.3-12.6-31.5l48-112c5.2-12.2 19.3-17.8 31.5-12.6s17.8 19.3 12.6 31.5zM313.5 353.9c12.2 5.2 17.8 19.3 12.6 31.5l-48 112c-5.2 12.2-19.3 17.8-31.5 12.6s-17.8-19.3-12.6-31.5l48-112c5.2-12.2 19.3-17.8 31.5-12.6z"/></svg>
+    </button>
+    <button id="BotaoVelocidadeDirecaoVento" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#DDDDDD" d="M288 32c0 17.7 14.3 32 32 32l32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128c-17.7 0-32 14.3-32 32s14.3 32 32 32l320 0c53 0 96-43 96-96s-43-96-96-96L320 0c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32l32 0c53 0 96-43 96-96s-43-96-96-96L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32zM128 512l32 0c53 0 96-43 96-96s-43-96-96-96L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32z"/></svg>
+    </button>
+    <button id="BotaoRadiacaoSolar" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#DDDDDD" d="M256 64a192 192 0 1 1 0 384 192 192 0 1 1 0-384zm0 448A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM200 256c0-20.7 11.3-38.8 28-48.5l-36-62.3c-8.8-15.3-28.7-20.8-42-9c-25.6 22.6-43.9 53.3-50.9 88.1C95.7 241.5 110.3 256 128 256l72 0zm28 48.5l-36 62.4c-8.8 15.3-3.6 35.2 13.1 40.8c16 5.4 33.1 8.3 50.9 8.3s34.9-2.9 50.9-8.3c16.7-5.6 21.9-25.5 13.1-40.8l-36-62.4c-8.2 4.8-17.8 7.5-28 7.5s-19.8-2.7-28-7.5zM312 256l72 0c17.7 0 32.3-14.5 28.8-31.8c-7-34.8-25.3-65.5-50.9-88.1c-13.2-11.7-33.1-6.3-42 9l-36 62.3c16.7 9.7 28 27.8 28 48.5zm-56 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+    </button>
+    <button id="BotaoPainelSolar" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#DDDDDD" d="M122.2 0C91.7 0 65.5 21.5 59.5 51.4L8.3 307.4C.4 347 30.6 384 71 384l217 0 0 64-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0 0-64 217 0c40.4 0 70.7-36.9 62.8-76.6l-51.2-256C574.5 21.5 548.3 0 517.8 0L122.2 0zM260.9 64l118.2 0 10.4 104-139 0L260.9 64zM202.3 168l-100.8 0L122.2 64l90.4 0L202.3 168zM91.8 216l105.6 0L187.1 320 71 320 91.8 216zm153.9 0l148.6 0 10.4 104-169.4 0 10.4-104zm196.8 0l105.6 0L569 320l-116 0L442.5 216zm96-48l-100.8 0L427.3 64l90.4 0 31.4-6.3L517.8 64l20.8 104z"/></svg>
+    </button>
+    <button id="BotaoRadiacaoUV" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#DDDDDD" d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+    </button>
+
+    <div id="expandableContent1" class="expandable-content">
+      <h2>Sensor de Temperatura, Umidade e Pressão</h2>
+      <h4>Modelo: </h4>
+      <div class="back">XEON-2L</div>
+      <h4>Empresa:</h4>
+      <div class="back">ATIVA Soluções</div>
+      <h4>Descrição:</h4>
+      <div class="back2">
+        <p>
+          Conjunto de sensores, em um único produto, responsáveis por obter os valores de pressão atmosférica, temperatura do ar e umidade relativa do ar.
+        </p>
+      </div>
+
+      <h4>Gráficos:</h4>
+      <div class="b-grafico">
+          <div id="GraficoUmidadeDoArMedia" class="Mini-Grafico"></div>
+          <div id="GraficoPressaoMedia" class="Mini-Grafico"></div>
+          <div id="GraficoTemperaturaMedia" class="Mini-Grafico"></div>
+      </div>
+
+      <button id="BotaoFechar1">X</button>
+    </div>
+
+    <div id="expandableContent2" class="expandable-content">
+      <h2>Pluviômetro</h2>
+      <h4>Modelo: </h4>
+      <div class="back">HSA TB4</div>
+      <h4>Empresa:</h4>
+      <div class="back">ATIVA Soluções</div>
+      <h4>Descrição:</h4>
+      <div class="back2">
+        <p>
+          Pluviômetro de báscula digital, encarregado de, por meio de pulsos elétricos, descobrir a quantidade de chuva, em mm, de uma região. 
+        </p>
+      </div>
+
+      <h4>Gráficos:</h4>
+      <div class="b-grafico">
+          <div id="GraficoChuva" class="Mini-Grafico"></div>
+      </div>
+
+      <button id="BotaoFechar2">X</button>
+    </div>
+
+    <div id="expandableContent3" class="expandable-content">
+      <h2>Anemômetro</h2>
+      <h4>Modelo: </h4>
+      <div class="back">XEON-2L</div>
+      <h4>Empresa:</h4>
+      <div class="back">ATIVA Soluções</div>
+      <h4>Descrição:</h4>
+      <div class="back2">
+        <p>
+          Dispositivo utilizado para descobrir, por meio de alguns pequenos componentes internos, a velocidade e a direção do vento no local onde a estação meteorológica encontra-se.
+        </p>
+      </div>
+
+      <h4>Gráficos:</h4>
+      <div class="b-grafico">
+            <div id="GraficoVelocidadeVento" class="Mini-Grafico"></div>
+            <div id="GraficoVelocidadeRajadaVento" class="Mini-Grafico"></div>
+            <div id="GraficoDirecaoVento" class="Mini-Grafico"></div>
+      </div>
+
+      <button id="BotaoFechar3">X</button>
+    </div>
+
+    <div id="expandableContent4" class="expandable-content">
+      <h2>Piranômetro</h2>
+      <h4>Modelo: </h4>
+      <div class="back">XEON-2L</div>
+      <h4>Empresa:</h4>
+      <div class="back">ATIVA Soluções</div>
+      <h4>Descrição:</h4>
+      <div class="back2">
+        <p>
+          Sensor responsável por medir a irradiância solar por metro quadrado, em Kj, de um determinado local.
+        </p>
+      </div>
+
+      <h4>Gráficos:</h4>
+      <div class="b-grafico">
+          <div id="GraficoRadiacaoSolar" class="Mini-Grafico"></div>
+      </div>
+
+      <button id="BotaoFechar4">X</button>
+    </div>
+
+    <div id="expandableContent5" class="expandable-content">
+      <h2>Painel Solar</h2>
+      <h4>Modelo: </h4>
+      <div class="back">XEON-2L</div>
+      <h4>Empresa:</h4>
+      <div class="back">ATIVA Soluções</div>
+      <h4>Descrição:</h4>
+      <div class="back2">
+        <p>
+          Placa solar da Estação Genesis, responsável por alimentar, junto a uma bateria de 12V e a um controlador de carga, os componentes, circuitos e eletrônicos do projeto.
+        </p>
+      </div>
+
+      <button id="BotaoFechar5">X</button>
+    </div>
+
+    <div id="expandableContent6" class="expandable-content">
+      <h2>Sensor de Radiação UV</h2>
+      <h4>Modelo: </h4>
+      <div class="back">XEON-2L</div>
+      <h4>Empresa:</h4>
+      <div class="back">ATIVA Soluções</div>
+      <h4>Descrição:</h4>
+      <div class="back2">
+        <p>
+          Sensor responsável por medir a intensidade de radiação ultravioleta por metro quadrado, em Kj, de um determinado local.
+        </p>
+      </div>
+
+      <h4>Gráficos:</h4>
+      <div class="b-grafico">
+          <div id="GraficoRadiacaoUV" class="Mini-Grafico"></div>
+      </div>
+
+      <button id="BotaoFechar6">X</button>
+    </div>
+
+    <footer>
+      <h3>Controles</h3>
+      <p>Esquerdo - Rotacionar</p>
+      <p>Direito - Movimentar</p>
+      <p>Meio - Aproximar</p>
+    </footer>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.156.1/build/three.module.js",
+          "OrbitControls": "https://unpkg.com/three@0.156.1/examples/jsm/controls/OrbitControls.js",
+          "GLTFLoader": "https://unpkg.com/three@0.156.1/examples/jsm/loaders/GLTFLoader.js",
+          "simplex-noise": "https://cdn.jsdelivr.net/npm/simplex-noise@3.0.0/dist/esm/simplex-noise.js",
+          "Sky": "https://unpkg.com/three@0.156.1/examples/jsm/objects/Sky.js"
+        }
+      }
+    </script>
+    <script src="/assets/js/gemeo.js" type="module"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

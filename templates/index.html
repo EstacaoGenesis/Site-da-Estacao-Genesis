@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TesteBugCode</title>
+    <meta
+      name="description"
+      content="Estaçao Genesis - O Futuro da Meteorologia para Agricultores"
+    />
+    <meta
+      name="keywords"
+      content="Meteorologia, Agricultura, Inovação, Tecnologia"
+    />
+    <meta name="author" content="Equipe 3101" />
+    <link rel="stylesheet" href="/assets/CSS/MyLib.css" />
+    <link rel="stylesheet" href="/assets/CSS/style.css" />
+    <link rel="stylesheet" href="/assets/CSS/H-F.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <div>
+    <header class="header" id="header">
+      <nav class="nav container" aria-label="Main Navigation">
+        <a href="#" class="nav__logo">E. Genesis</a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="index.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Início</span>
+              </a>
+            </li>
+            
+            <li class="nav__item">
+              <a href="dashboard.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            
+            <li class="nav__item">
+              <a href="chatbot.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>ChatBot</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="gemeo.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Gemeo Digital</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Close button -->
+          <div class="nav__close" id="nav-close">
+            <i class="ri-close-large-line"></i>
+          </div>
+
+          <div class="nav__social">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-instagram-line"></i>
+            </a>
+
+            <a
+              href="https://github.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a href="#/" target="#" class="nav__social-link">
+              <i class="bx bx-notepad"></i>
+            </a>
+
+            <a
+              href="mailto:estacaogenesis3101@gmail.com"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="bx bx-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+      </nav>
+    </header>
+
+    <section class="vw1">
+      <img src="/assets/IMG/Background.png" alt="Imagem de introdução" />
+      <div class="bl-left">
+        <h4>O Futuro da Meteorologia</h4>
+        <h1>Estação Genesis</h1>
+        <div class="line"></div>
+        <p>
+          A <span>Estação Genesis</span>, projeto desenvolvido pela equipe 3101, é uma estação meteorológica que, por meio da utilização dos sensores da ATIVA Soluções e de diversas tecnologias inovadoras, como Inteligência artifical, Gêmeos Digitais e NovaGenesis, não só coleta os dados climáticos de um local como também realiza previsões automaticamente a partir dessas informações e as exibe de maneira totalmente intuitiva e organizada.
+        </p>
+        <div class="bx-midias-sociais">
+          <a href="www.instagram.com" target="_blank">
+            <div class="circle c1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                  />
+              </svg>
+            </div>
+          </a>
+          <a href="https://github.com/" target="_blank">
+            <div class="circle c2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+            </div>
+          </a>
+          <a href="https://www.notion.so/Di-rio-de-Bordo-b80a633d32ad4d6d85510eee0a9d1a12" target="_blank">
+            <div class="circle c3">
+              <i class="bx bx-notepad bx-note2"></i>
+            </div>
+          </a>
+          <a href="mailto:estacaogenesis3101@gmail.com" target="_blank">
+            <div class="circle c4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="fundo-sombra"></div>
+    </section>
+
+    <section class="vw2 sd-i1">
+      <h1 class="mg-t100"><span>Tecnologia que transforma, inovação com propósito</span></h1>
+      <h3 class="mg-t12">
+        Descubra a Estação Genesis, suas vantagens, o problema enfrentado por ela e seus idealizadores.
+      </h3>
+      <div class="bl-7 mg mg-t36 video-equipe">
+        <iframe src="https://youtube.com/embed/SUavcwCCLN8" allowfullscreen width="100%" height="100%" class="second-bl"></iframe>
+      </div>
+
+      <h1 class="mg-t130 h1">
+        Conheça uma das empresas que confiam na <span>Estação Genesis</span>
+      </h1>
+      <div class="ct-ativa mg mg-t52">
+        <div class="bl-sobreAtiva ativa1">
+          <h4>2500</h4>
+          <span>Clientes</span>
+        </div>
+        <div class="bl-sobreAtiva ativa2">
+          <h4>19</h4>
+          <span>Anos</span>
+        </div>
+        <div class="bl-sobreAtiva ativa3">
+          <a href="https://ativasolucoes.com.br/" target="_blank">
+            <h5>ATIVA Soluções</h5>
+          </a>
+          <span style="margin-bottom: 2px">Empresa</span>
+        </div>
+        <div class="bl-sobreAtiva ativa4">
+          <h4>2 Milhões</h4>
+          <span>Equipamentos</span>
+        </div>
+        <div class="bl-sobreAtiva ativa5">
+          <h4>SRS - MG</h4>
+          <span>Sede</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="vw3">
+      <h1 class="mg-t100">Diferenciais do Projeto</h1>
+
+      <div class="ct-informations mg mg-t40">
+        <div class="mini-ct">
+          <div class="bx-1 bx-info">
+            <div class="fita-name ft-nm1">
+              <div class="fita-name ft-nm2">IA</div>
+            </div>
+            <div class="bx-2 mg mg-t36 df-e">
+              <span class="mg-t12">Rede neural LSTM desenvolvida pelo grupo para prever automaticamente os dados climáticos futuros com base nas informações coletadas pelos sensores da estação meteorológica.</span>
+            </div>
+          </div>
+          <div class="fita-detals"></div>
+        </div>
+        <div class="mini-ct">
+          <div class="bx-1 bx-info">
+            <div class="fita-name ft-nm1">
+              <div class="fita-name ft-nm2">NovaGenesis</div>
+            </div>
+            <div class="bx-2 mg mg-t36 df-e">
+              <span class="mg-t12">Arquitetura de comunicação inovadora, desenvolvida no INATEL, que é mais eficiente, flexível, econômica e segura que os modelos tradicionais, como o TCP/IP.</span>
+            </div>
+          </div>
+          <div class="fita-detals"></div>
+        </div>
+        <div class="mini-ct">
+          <div class="bx-1 bx-info">
+            <div class="fita-name ft-nm1">
+              <div class="fita-name ft-nm2">Gêmeo Digital</div>
+            </div>
+            <div class="bx-2 mg mg-t36 df-e">
+              <span class="mg-t12">Simulação digital precisa da Estação Genesis, onde as informações do mundo real, coletadas pela estação meteorológica, influenciam o virtual e vice-versa.</span>
+            </div>
+          </div>
+          <div class="fita-detals"></div>
+        </div>
+      </div>
+
+      <div class="ct-informations mg mg-t20">
+        <div class="mini-ct">
+          <div class="bx-1 bx-info">
+            <div class="fita-name ft-nm1">
+              <div class="fita-name ft-nm2">Sensores</div>
+            </div>
+            <div class="bx-2 mg mg-t36 df-e">
+              <span class="mg-t12">Equipado com os melhores sensores nacionais da ATIVA Soluções, que são mais precisos, confiáveis e resistentes do que outros modelos do mercado.</span>
+            </div>
+          </div>
+          <div class="fita-detals"></div>
+        </div>
+        <div class="mini-ct">
+          <div class="bx-1 bx-info">
+            <div class="fita-name ft-nm1">
+              <div class="fita-name ft-nm2">Chatbot</div>
+            </div>
+            <div class="bx-2 mg mg-t36 df-e">
+              <span class="mg-t12">Integrada com um modelo customizado do ChatGPT para a meteorologia e a ProjETE, adaptado para atender às necessidades específicas de cada usuário.</span>
+            </div>
+          </div>
+          <div class="fita-detals"></div>
+        </div>
+        <div class="mini-ct">
+          <div class="bx-1 bx-info">
+            <div class="fita-name ft-nm1">
+              <div class="fita-name ft-nm2">Site</div>
+            </div>
+            <div class="bx-2 mg mg-t36 df-e">
+              <span class="mg-t12">Praticidade no acesso a todas as informações da Estação Genesis, com uma interface projetada para exibir os dados climáticos de diversas formas.</span>
+            </div>
+          </div>
+          <div class="fita-detals"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vw4">
+      <div class="plano-fundo">
+        <div class="bx-pontos">
+          <h1>O que faz da Estação Genesis a sua melhor escolha?</h1>
+          <div class="bl-pontos">
+            <div class="box-pontos">
+              <div class="linha"></div>
+              <div class="bx-textos-pontos">
+                <h1>Precisão</h1>
+                <div class="linha-horizontal"></div>
+                <span>
+                  Com os sensores de altíssima precisão fornecidos pela ATIVA Soluções, e uma rede neural desenvolvida inteiramente pela nossa equipe, a coleta e previsão dos dados climáticos são feitas automaticamente, eliminando a necessidade de ação humana.
+                </span>
+              </div>
+            </div>
+            <div class="box-pontos">
+              <div class="linha"></div>
+              <div class="bx-textos-pontos">
+                <h1>Praticidade</h1>
+                <div class="linha-horizontal"></div>
+                <span>
+                  Com o site da Estação Genesis, intuitivo e completo, os usuários podem acessar todas as informações necessárias sobre o projeto por meio de um vídeo explicativo gravado pela equipe, além de obter dados climáticos em tempo real através da dashboard, do chatbot e do gêmeo digital.
+                </span>
+              </div>
+            </div>
+            <div class="box-pontos">
+              <div class="linha"></div>
+              <div class="bx-textos-pontos">
+                <h1>Confiabilidade</h1>
+                <div class="linha-horizontal"></div>
+                <span>
+                  Após inúmeras pesquisas realizadas pelo grupo e uma série de testes em diversos cenários, incluindo chuvas e ventos fortes, o projeto comprovou seu funcionamento estável, sem apresentar falhas ao longo de 15 dias consecutivos, evidenciando sua alta confiabilidade em cenários reais.
+                </span>
+              </div>
+            </div>
+            <div class="box-pontos">
+              <div class="linha"></div>
+              <div class="bx-textos-pontos">
+                <h1>Inovação</h1>
+                <div class="linha-horizontal"></div>
+                <span>
+                  Equipada com uma rede neural, um gêmeo digital, a arquitetura NovaGenesis e um chatbot, a Estação Genesis oferece um alto nível de inovação tecnológica, preparando-a para o futuro, facilitando seu uso e abrindo novas possibilidades para os usuários.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bl-imagem">
+        <img src="/assets/IMG/mobile.png" alt="">
+      </div>
+    </section>
+    <section class="vw5"></section>
+    <section class="vw6"></section>
+    <section class="vw7"></section>
+    <section class="vw8"></section>
+
+    <div class="btn-config">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-config"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>
+    </div>
+    <div class="ct-config">
+      <h1>configurações</h1>
+      <h2 class="title-line">início</h2>
+      <div class="bx-one">
+        <h3>Estilos:</h3>
+        <div class="caixa-select-color">
+          <span class="circle-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+          </span>
+          <span class="circle-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+          </span>
+          <span class="circle-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <h2 class="title-line2">Dados da estação</h2>
+      <div class="bx-two">
+        <select id="nome" name="nome" class="input-field">
+            <option value="">Selecione...</option>
+            <option value="Simba">Estação 1</option>
+            <option value="Tom">Estação 2</option>
+            <option value="Luna">Estação 3</option>
+            <option value="Nina">Estação 4</option>
+            <option value="Oscar">Estação 5</option>
+            <option value="Max">Estação 6</option>
+        </select>
+        <input type="date" id="data" name="data" class="input-field">
+        <input type="time" id="hora" name="hora" class="input-field">
+      </div>
+
+      <h2 class="title-line3">Chatbot</h2>
+      <div class="bx-tree">
+        <div class="caixa-select-chatbot">
+          <h3>Criatividade:</h3>
+          <div class="range-container">
+            <input type="range" id="range" class="range" max="100" min="0">
+            <label for="range">40</label>
+          </div>   
+        </div>
+        <div class="caixa-select-chatbot">
+          <h3>Tamanho:</h3>
+          <div class="range-container">
+            <input type="range" id="range2" class="range" max="100" min="0">
+            <label for="range">40</label>
+          </div>          
+        </div>
+        </div>
+
+      <h2 class="title-line4">Gemeo</h2>
+      <div class="bx-two">
+        <select id="nome" name="nome" class="input-field">
+            <option value="">Selecione...</option>
+            <option value="Simba">Baixo</option>
+            <option value="Tom">Médio</option>
+            <option value="Luna">Alto</option>
+        </select>
+      </div>
+
+      <h2 class="title-line5">Histórico</h2>
+      <div class="bx-two">
+        <button type="button" class="btn-log">Ver Histórico</button>
+      </div>
+    </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/config.js"></script>
+    <!--Codigo de scroll suave: <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.22/bundled/lenis.min.js"></script>
+    <script src="/assets/js/rolagem.js"></script>-->
+  </body>
+</html>

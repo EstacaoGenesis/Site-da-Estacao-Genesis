@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TesteBugCode</title>
+    <meta
+      name="description"
+      content="Estaçao Genesis - O Futuro da Meteorologia para Agricultores"
+    />
+    <meta
+      name="keywords"
+      content="Meteorologia, Agricultura, Inovação, Tecnologia"
+    />
+    <meta name="author" content="Equipe 3101" />
+    <link rel="stylesheet" href="/assets/CSS/style.css" />
+    <link rel="stylesheet" href="/assets/CSS/H-F.css" />
+    <link rel="stylesheet" href="/assets/CSS/dash.css" />
+    <link rel="stylesheet" href="/assets/CSS/MyLib.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel=”stylesheet”
+    href=”https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css”>
+  </head>
+  <body style="background-color: rgb(64, 65, 64)">
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">Logo</a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="index.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Início</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="dashboard.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="chatbot.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>ChatBot</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="gemeo.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Gemeo Digital</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Close button -->
+          <div class="nav__close" id="nav-close">
+            <i class="ri-close-large-line"></i>
+          </div>
+
+          <div class="nav__social">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-instagram-line"></i>
+            </a>
+
+            <a
+              href="https://github.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a
+              href="https://dribbble.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-dribbble-line"></i>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-linkedin-box-line"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+      </nav>
+    </header>
+
+    <div class="Info">
+      <div class="bl-infos">
+        <h2 id="NumeroEstacao"></h2>
+        <h3 id="Dia"></h3>
+        <h4 id="Hora"></h4>
+        <h5 id="Fonte"></h5>
+      </div>
+
+      <div class="Graficos">
+        <div class="mini-bl-sensor">
+          <h3 class="mini-name-sensor">Pluviometria</h3>
+          <div class="Grafico" id="InfoPluviometria"></div>
+        </div>
+        <div class="mini-bl-sensor">
+          <h3 class="mini-name-sensor">Temperatura Mín.</h3>
+          <div class="Grafico" id="InfoTemperaturaMinima"></div>
+        </div>
+        <div class="mini-bl-sensor">
+          <h3 class="mini-name-sensor">Temperatura Máx.</h3>
+          <div class="Grafico" id="InfoTemperaturaMaxima"></div>
+        </div>
+        <div class="mini-bl-sensor">
+          <h3 class="mini-name-sensor">Pressão Atm.</h3>
+          <div class="Grafico" id="InfoPressaoAtmosferica"></div>
+        </div>
+        <div class="mini-bl-sensor">
+          <h3 class="mini-name-sensor">Umidade Ar</h3>
+          <div class="Grafico" id="InfoUmidade"></div>
+        </div>
+        <div class="mini-bl-sensor">
+          <h3 class="mini-name-sensor">Velocidade Vento</h3>
+          <div class="Grafico" id="InfoVento"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ct-info">
+      <div class="bx-sensores">
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pluviometria</h3>
+          <div class="Grafico" id="GraficoChuva"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Radiação Solar</h3>
+          <div class="Grafico" id="GraficoRadiacaoSolar"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Sensação Térmica</h3>
+          <div class="Grafico" id="GraficoSensacaoTermica"></div>
+        </div>
+
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Temperatura Mín.</h3>
+          <div class="Grafico" id="GraficoTemperaturaMinima"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Temperatura</h3>
+          <div class="Grafico" id="GraficoTemperaturaMedia"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Temperatura Máx.</h3>
+          <div class="Grafico" id="GraficoTemperaturaMaxima"></div>
+        </div>
+
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pt. Orvalho Mín.</h3>
+          <div class="Grafico" id="GraficoPontoDeOrvalhoMinimo"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pt. Orvalho</h3>
+          <div class="Grafico" id="GraficoPontoDeOrvalhoMedio"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pt. Orvalho Máx.</h3>
+          <div class="Grafico" id="GraficoPontoDeOrvalhoMaximo"></div>
+        </div>
+
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pressão Atm. Mín.</h3>
+          <div class="Grafico" id="GraficoPressaoMinima"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pressão Atm.</h3>
+          <div class="Grafico" id="GraficoPressaoMedia"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Pressão Atm. Máx.</h3>
+          <div class="Grafico" id="GraficoPressaoMaxima"></div>
+        </div>
+
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Umidade Ar Mín.</h3>
+          <div class="Grafico" id="GraficoUmidadeDoArMinima"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Umidade Ar</h3>
+          <div class="Grafico" id="GraficoUmidadeDoArMedia"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Umidade Ar Máx.</h3>
+          <div class="Grafico" id="GraficoUmidadeDoArMaxima"></div>
+        </div>
+
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Direção Vento</h3>
+          <div class="Grafico" id="GraficoDirecaoVento"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Velocidade Vento</h3>
+          <div class="Grafico" id="GraficoVelocidadeVento"></div>
+        </div>
+        <div class="bl-sensor">
+          <h3 class="name-sensor">Velocidade Raj. Vento</h3>
+          <div class="Grafico" id="GraficoVelocidadeRajadaVento"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-config"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-config"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>
+    </div>
+    <div class="ct-config">
+      <h1>configurações</h1>
+      <h2 class="title-line">início</h2>
+      <div class="bx-one">
+        <h3>Estilos:</h3>
+        <div class="caixa-select-color">
+          <span class="circle-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+          </span>
+          <span class="circle-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+          </span>
+          <span class="circle-color">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <h2 class="title-line2">Dados da estação</h2>
+      <div class="bx-two">
+        <select id="nome" name="nome" class="input-field">
+            <option value="">Selecione...</option>
+            <option value="Simba">MG-01</option>
+        </select>
+        <input type="date" id="data" name="data" class="input-field">
+        <input type="time" id="hora" name="hora" class="input-field">
+      </div>
+
+      <h2 class="title-line3">Chatbot</h2>
+      <div class="bx-tree">
+        <div class="caixa-select-chatbot">
+          <h3>Criatividade:</h3>
+          <div class="range-container">
+            <input type="range" id="range" class="range" max="100" min="0">
+            <label for="range">40</label>
+          </div>   
+        </div>
+        <div class="caixa-select-chatbot">
+          <h3>Tamanho:</h3>
+          <div class="range-container">
+            <input type="range" id="range2" class="range" max="100" min="0">
+            <label for="range">40</label>
+          </div>          
+        </div>
+        </div>
+
+      <h2 class="title-line4">Gemeo</h2>
+      <div class="bx-two">
+        <select id="nome" name="nome" class="input-field">
+            <option value="">Selecione...</option>
+            <option value="Simba">Baixo</option>
+            <option value="Tom">Médio</option>
+            <option value="Luna">Alto</option>
+        </select>
+      </div>
+
+      <h2 class="title-line5">Histórico</h2>
+      <div class="bx-two">
+        <button type="button" class="btn-log">Ver Histórico</button>
+      </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="/assets/js/dashboard.js"></script>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

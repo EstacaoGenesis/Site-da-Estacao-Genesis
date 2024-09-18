@@ -1,0 +1,130 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.text-info {
+  color: rgb(89, 233, 89);
+  margin-top: 90px;
+}
+
+line {
+  width: 90%;
+  background-color: aliceblue;
+  height: 10px;
+  margin: auto;
+}
+
+.ct-info {
+  width: 95%;
+  height: auto;
+  margin-top: 2px;
+  background: linear-gradient(317deg, rgba(154, 52, 237, 0.407) 0%, rgba(255,255,255,0.4766281512605042) 100%);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 13.5px );
+  -webkit-backdrop-filter: blur( 13.5px );
+  border-radius: 10px;
+}
+
+.bx-sensores {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.bl-sensor{
+  width: 14.5%;
+  height: 175px;
+  background-color: rgba(2, 1, 35, 0.884);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  margin: 12px 0px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.name-sensor {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.mini-name-sensor {
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.Info{
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 95%;
+}
+.bl-infos {
+  min-width: 350px;
+  height: 140px;
+  background: linear-gradient(90deg, rgba(172,68,255,1) 0%, rgba(119,0,255,1) 100%);
+  border-radius: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.Graficos{
+  width: 800px;
+  height: 140px;
+  display: flex;
+  background: linear-gradient(90deg, rgba(124,0,255,1) 0%, rgba(218,129,255,1) 50%, rgba(244,0,255,1) 100%);
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+}
+.mini-bl-sensor{
+  width: 14.5%;
+  height: 125px;
+  background-color: rgba(2, 1, 35, 0.884);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Grafico{
+  max-width: 250px;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  user-select: none;
+  height: auto;
+}
+.Mini-Grafico{
+  max-width: 150px;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+#NumeroEstacao {
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+#Dia, #Hora, #Fonte {
+  color: azure;
+  opacity: 87%;
+}

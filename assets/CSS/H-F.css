@@ -1,0 +1,221 @@
+/*Header*/
+@import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap);
+.header,
+.nav,
+.nav__list,
+.nav__social {
+  display: flex;
+}
+.nav__link,
+.nav__logo {
+  font-weight: var(--font-medium);
+  color: var(--white-color);
+}
+.nav__close,
+.nav__link,
+.nav__logo,
+.nav__social-link,
+.nav__toggle {
+  color: var(--white-color);
+}
+:root {
+  --header-height: 2rem;
+  --header-min-height: 27rem;
+  --white-color: hsl(0, 0%, 100%);
+  --black-color: hsl(0, 0%, 0%);
+  --gradient-color: linear-gradient(
+    133deg,
+    rgb(255, 98, 0) 0%,
+    rgb(69, 16, 155) 90%
+  );
+  --body-font: "Montserrat Alternates", sans-serif;
+  --h1-font-size: 1.5rem;
+  --normal-font-size: 0.938rem;
+  --font-regular: 400;
+  --font-medium: 500;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  width: 100vw;
+  margin-inline: 1.5rem;
+}
+.header,
+.nav__link:hover span::after {
+  width: 100%;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  justify-content: center;
+  z-index: var(--z-fixed);
+}
+.nav {
+  position: relative;
+  height: var(--header-height);
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__logo {
+  font-size: 2rem;
+}
+.nav__close,
+.nav__toggle {
+  display: flex;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+@media screen and (max-width: 1150px) {
+  header {
+    padding: 8px 0;
+  }
+  .nav__menu {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    background-color: var(--black-color);
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    width: 100%;
+    height: var(--header-min-height);
+    padding: 6rem 3.5rem 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: left 0.4s;
+  }
+  .nav__item {
+    transform: translateX(-150px);
+    visibility: hidden;
+    transition: transform 0.4s ease-out, visibility 0.4s;
+  }
+  .nav__item:first-child {
+    transition-delay: 0.1s;
+  }
+  .nav__item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav__item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .nav__item:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  .nav__item:nth-child(5) {
+    transition-delay: 0.5s;
+  }
+  .nav__social {
+    margin-top: 20px;
+  }
+}
+.nav__list {
+  flex-direction: column;
+  row-gap: 3rem;
+}
+.nav__link {
+  position: relative;
+  font-size: var(--h1-font-size);
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.4s;
+}
+.nav__link i {
+  font-size: 2rem;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+.nav__link span {
+  position: relative;
+  transition: margin 0.4s;
+}
+.nav__link span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: var(--white-color);
+  transition: width 0.4s ease-out;
+}
+.nav__link:hover span {
+  margin-left: 2.5rem;
+}
+.nav__link:hover i {
+  opacity: 1;
+  visibility: visible;
+}
+.nav__list:has(.nav__link:hover) .nav__link:not(:hover) {
+  opacity: 0.4;
+}
+.nav__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+.nav__social {
+  column-gap: 1rem;
+}
+.nav__social-link {
+  font-size: 1.5rem;
+  transition: transform 0.4s;
+}
+.nav__social-link:hover {
+  transform: translateY(-0.25rem);
+}
+.show-menu {
+  left: 0;
+}
+.show-menu .nav__item {
+  visibility: visible;
+  transform: translateX(0);
+}
+@media screen and (min-width: 1150px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+  .container {
+    width: 100%;
+  }
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+  }
+  .nav__close,
+  .nav__toggle {
+    display: none;
+  }
+  .nav__link {
+    font-size: var(--normal-font-size);
+  }
+  .nav__link i {
+    font-size: 1.5rem;
+  }
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3.5rem;
+  }
+  .nav__menu {
+    display: flex;
+    align-items: center;
+    column-gap: 10rem;
+  }
+}

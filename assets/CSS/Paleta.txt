@@ -1,0 +1,13 @@
+Guia de Psicologia das Cores
+Vermelho: Paixão, amor, raiva, perigo, alerta
+Laranja: calor, energia, felicidade, entusiasmo
+Verde: natureza, crescimento, saúde, harmonia, dinheiro
+Amarelo: sol, felicidade, alegria, intelecto, cautela
+Azul: calma, confiança, lealdade, sabedoria, mistério
+Roxo: realeza, luxo, criatividade, mistério
+Rosa: inocência, feminilidade, compaixão, amor
+Preto: poder, sofisticação, mistério, mal
+Branco: pureza, inocência, limpeza, paz
+Marrom: rusticidade, confiabilidade, dependência, amizade
+Prata: modernidade, sofisticação, industrial, frio
+Ouro: luxo, riqueza, sucesso, prestígio, glamour

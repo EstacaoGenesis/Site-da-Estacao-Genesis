@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TesteBugCode</title>
+    <meta
+      name="description"
+      content="Estaçao Genesis - O Futuro da Meteorologia para Agricultores"
+    />
+    <meta
+      name="keywords"
+      content="Meteorologia, Agricultura, Inovação, Tecnologia"
+    />
+    <meta name="author" content="Equipe 3101" />
+    <link rel="stylesheet" href="/assets/CSS/style.css" />
+    <link rel="stylesheet" href="/assets/CSS/chat.css" />
+    <link rel="stylesheet" href="/assets/CSS/H-F.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="body2" style="background-color: cadetblue">
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">Logo</a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="index.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Início</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="dashboard.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="chatbot.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>ChatBot</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="gemeo.html" class="nav__link">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Gemeo Digital</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Close button -->
+          <div class="nav__close" id="nav-close">
+            <i class="ri-close-large-line"></i>
+          </div>
+
+          <div class="nav__social">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-instagram-line"></i>
+            </a>
+
+            <a
+              href="https://github.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a
+              href="https://dribbble.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-dribbble-line"></i>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              class="nav__social-link"
+            >
+              <i class="ri-linkedin-box-line"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+      </nav>
+    </header>
+
+    <div class="parede-box"></div>
+
+    <div class="box-questions">
+      <div class="topo">
+        <p>Pergunte ao <span>chatbot</span> da Estação Genesis</p>
+      </div>
+      <p id="status"></p>
+      <div id="history">
+        <!-- Aqui vai o chat gerado conforme as respostas -->
+      </div>
+      <div class="chao">
+        <input type="text" id="message-input" placeholder="Pergunte aqui..." />
+        <button class="btn-submit" id="btn-submit" onclick="sendMessage()">
+          Enviar
+        </button>
+      </div>
+    </div>
+
+    <div class="parede-box"></div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/chatbot.js"></script>
+  </body>
+</html>
