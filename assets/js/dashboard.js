@@ -251,16 +251,25 @@ let ChuvaTotal, TemperaturaMinimaAbsoluta, TemperaturaMaximaAbsoluta, PressaoMed
 let Chuva, RadiacaoSolar, TemperaturaMinima, TemperaturaMedia, TemperaturaMaxima, TemperaturaPontoDeOrvalhoMinima, TemperaturaPontoDeOrvalhoMedia, TemperaturaPontoDeOrvalhoMaxima, PressaoMinima, PressaoMedia, PressaoMaxima, UmidadeMinima, UmidadeMedia, UmidadeMaxima, DirecaoVento, Vento, VentoRajada, SensacaoTermica;
 
 
-// Busca os dados desejados na tabela de historico
-fetch('http://localhost:3000/api/historico')
-.then(response => response.json())
-.then(data => console.log('Dados do histórico:', data))
-.catch(error => console.error('Erro:', error));
-
 // Busca os dados desejados na tabela de previsao
-fetch('http://localhost:3000/api/previsao')
+fetch('http://localhost:5500/previsao')
 .then(response => response.json())
-.then(data => console.log('Dados da previsão:', data))
+.then(data => {
+    // Exibe todos os dados coletados no console da aplicação
+    console.log('Dados da previsão:', data)
+    
+    // Filtra as linhas onde a variável Estacao é igual a "MG-01"
+    const LinhasEstacaoMG01 = data.filter(linha => linha.Estacao === 'MG-01');
+    // Conta o número de linhas que contêm "MG-01" na variável Estacao
+    const NumeroLinhasEstacaoMG01 = LinhasEstacaoMG01.length;
+    // Exibe no console o número de linhas que contém MG-01 como valor de Estacao
+    console.log('Número de linhas relacionadas a MG-01:', NumeroLinhasEstacaoMG01);
+    
+    // Realiza operações com a última linha disponível
+    const UltimaLinhaMG01 = LinhasEstacaoMG01[LinhasEstacaoMG01.length - 1];
+    console.log(UltimaLinhaMG01);
+    console.log(UltimaLinhaMG01.Hora);
+})
 .catch(error => console.error('Erro:', error));
 
 
