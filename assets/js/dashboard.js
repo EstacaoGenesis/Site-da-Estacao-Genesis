@@ -229,10 +229,12 @@ const IconeVentoRajada = '/assets/SVG/VentoForte.svg';
 
 //----------------------------------------------------------------------------------------------------------------
 
-let Estacao = "";
-let Data = "";
-let Hora = "";
+let Estacao = "MG-01";
+let Data = "30/12/2022";
+let Hora = "21:20:00";
+let CorGraficos = 'rgb(255,0,160)';
 
+/*
 function coletarDados() {
     Estacao = document.getElementById("nome").value;
     Data = document.getElementById("data").value;
@@ -242,8 +244,8 @@ function coletarDados() {
 document.getElementById("nome").onchange = coletarDados;
 document.getElementById("data").onchange = coletarDados;
 document.getElementById("hora").onchange = coletarDados;
+*/
 
-let CorGraficos = 'rgb(255,0,160)';
 
 
 let Fonte;
@@ -251,84 +253,98 @@ let ChuvaTotal, TemperaturaMinimaAbsoluta, TemperaturaMaximaAbsoluta, PressaoMed
 let Chuva, RadiacaoSolar, TemperaturaMinima, TemperaturaMedia, TemperaturaMaxima, TemperaturaPontoDeOrvalhoMinima, TemperaturaPontoDeOrvalhoMedia, TemperaturaPontoDeOrvalhoMaxima, PressaoMinima, PressaoMedia, PressaoMaxima, UmidadeMinima, UmidadeMedia, UmidadeMaxima, DirecaoVento, Vento, VentoRajada, SensacaoTermica;
 
 
-// Busca os dados desejados na tabela de previsao
-fetch('http://localhost:5500/previsao')
-.then(response => response.json())
-.then(data => {
-    // Exibe todos os dados coletados no console da aplicação
-    console.log('Dados da previsão:', data)
-    
-    // Filtra as linhas onde a variável Estacao é igual a "MG-01"
-    const LinhasEstacaoMG01 = data.filter(linha => linha.Estacao === 'MG-01');
-    // Conta o número de linhas que contêm "MG-01" na variável Estacao
-    const NumeroLinhasEstacaoMG01 = LinhasEstacaoMG01.length;
-    // Exibe no console o número de linhas que contém MG-01 como valor de Estacao
-    console.log('Número de linhas relacionadas a MG-01:', NumeroLinhasEstacaoMG01);
-    
-    // Realiza operações com a última linha disponível
-    const UltimaLinhaMG01 = LinhasEstacaoMG01[LinhasEstacaoMG01.length - 1];
-    console.log(UltimaLinhaMG01);
-    console.log(UltimaLinhaMG01.Hora);
-})
-.catch(error => console.error('Erro:', error));
 
-
-// Procura as linhas correspondentes ao dia escolhido pelo usuário nas tabelas de "Historico" e "Previsao" com base na estação meteorológica selecionada
-// Conta o número de linahs coletadas em cada uma dessas tabelas
-let NumeroLinhasDiaPrevisao = 24;
-let NumeroLinhasDiaHistorico = 24;
-
-// Descobre, com base no número de linhas coletadas de cada uma das tabelas, se os dados serão exibidos com base na coleta ou na previsão
-if (NumeroLinhasDiaHistorico == 24){
-    Fonte = 'Medição'
-
-    // Coleta os valores de todas as linhas do dia da tabela "Historico" para realizar os cálculos sobre as médias diárias
-    ChuvaTotal = 22;
-    TemperaturaMinimaAbsoluta = 11;
-    TemperaturaMaximaAbsoluta = 24;
-    PressaoMediaAbsoluta = 732;
-    UmidadeMediaAbsoluta = 77;
-    VentoMedio = 8.5;
-
-    // Coleta os valores específicos da hora desejada pela tabela "Historico"
-    Chuva = 6;
-    RadiacaoSolar = 600;
-    TemperaturaMinima = 12;
-    TemperaturaMedia = 15;
-    TemperaturaMaxima = 21;
-    TemperaturaPontoDeOrvalhoMinima = 2;
-    TemperaturaPontoDeOrvalhoMedia = 3;
-    TemperaturaPontoDeOrvalhoMaxima = 4;
-    PressaoMinima = 650;
-    PressaoMedia = 720;
-    PressaoMaxima = 831;
-    UmidadeMinima = 73;
-    UmidadeMedia = 75;
-    UmidadeMaxima = 76;
-    DirecaoVento = 192;
-    Vento = 7;
-    VentoRajada = 11;
-    SensacaoTermica = 24;
+// Funções responsáveis por coletar os dados do banco de dados do projeto
+function BuscarHoraNoHistorico() {
+    return false;
 }
-else{
-    /*
-    
-    */
 
-    // Coleta os valores de todas as linhas do dia da tabela "Previsao" para realizar os cálculos sobre as médias diárias
-    ChuvaTotal = 22;
-    TemperaturaMinimaAbsoluta = 11;
-    TemperaturaMaximaAbsoluta = 24;
-    PressaoMediaAbsoluta = 732;
-    UmidadeMediaAbsoluta = 77;
-    VentoMedio = 8.5;
+function BuscarMediaNoHistorico() {
+    return false;
+}
 
-    // Descobre se pelo menos os valores da hora escolhida pelo usuário já foram coletados
-    /*
-    if(Hora in LinhasDiaHistorico){
-        Fonte = 'Medição'
+async function BuscarHoraNaPrevisao() {
+    try {
+        // Busca os dados desejados na tabela de previsao
+        const response = await fetch('http://localhost:5500/previsao');
+        const data = await response.json();
 
-        // Coleta os valores específicos da hora desejada pela tabela "Historico"
+        // Exibe todos os dados coletados no console da aplicação
+        console.log('Dados da previsão:', data);
+
+        try {
+            // Filtra as linhas onde a variável Estacao é igual a "MG-01" e a variável Dia é igual a data selecionada pelo usuário
+            const LinhasDesejadasPrevisao = data.filter(linha => linha.Estacao === Estacao && linha.Dia === Data);
+
+            // Conta o número de linhas que cumprem com esses requisitos
+            const NumeroLinhasDesejadasPrevisao = LinhasDesejadasPrevisao.length;
+            if (NumeroLinhasDesejadasPrevisao == 24) {
+                // Exibe no console o número de linhas que contém MG-01 como valor de Estacao
+                console.log('Número de linhas desejdas para os valores de dia e estação definidos pelo usuário:', NumeroLinhasDesejadasPrevisao);
+
+                // Coleta a linha que possui as informações correspondentes a hora requisitada pelo usuário
+                const LinhaHoraDesejadaPrevisao = LinhasDesejadasPrevisao.filter(linha => linha.Hora === Hora);
+                if (LinhaHoraDesejadaPrevisao.length === 0) {
+                    console.log("A hora desejada não está disponível no banco de dados da previsao");
+                    return false;
+                } else {
+                    // Exibe no console a linha da hora desejada pelo usuário
+                    console.log('Linha da hora desejda pelo usuário:', LinhaHoraDesejadaPrevisao);
+                    
+                    const Linha = LinhaHoraDesejadaPrevisao[0];
+                    
+                    Chuva = Linha.Precipitacao_horario_total_mm.toFixed(2);
+                    RadiacaoSolar = Linha.Radiacao_global.toFixed(2);
+                    TemperaturaMinima = Linha.Temp_min_hora_anterior.toFixed(2);
+                    TemperaturaMedia = Linha.Temp_ar.toFixed(2);
+                    TemperaturaMaxima = Linha.Temp_max_hora_anterior.toFixed(2);
+                    TemperaturaPontoDeOrvalhoMinima = Linha.Temp_ponto_orvalho_min_hora_anterior.toFixed(2);
+                    TemperaturaPontoDeOrvalhoMedia = Linha.Temp_ponto_orvalho.toFixed(2);
+                    TemperaturaPontoDeOrvalhoMaxima = Linha.Temp_ponto_orvalho_max_hora_anterior.toFixed(2);
+                    PressaoMinima = Linha.PA_min_hora_anterior.toFixed(2);
+                    PressaoMedia = Linha.PA_horaria_nivel_estacao.toFixed(2);
+                    PressaoMaxima = Linha.PA_max_hora_anterior.toFixed(2);
+                    UmidadeMinima = Linha.Umidade_relativa_ar_min_hora_anterior.toFixed(2);
+                    UmidadeMedia = Linha.Umidade_relativa_do_ar.toFixed(2);
+                    UmidadeMaxima = Linha.Umidade_relativa_ar_max_hora_anterior.toFixed(2);
+                    DirecaoVento = Linha.Direcao_horaria_vento_partir_norte.toFixed(2);
+                    Vento = Linha.Velocidade_horaria_vento.toFixed(2);
+                    VentoRajada = Linha.Velocidade_rajada_vento.toFixed(2);
+                    SensacaoTermica = (13.12 + (0.6215 * Linha.Temp_ar) - (11.37 * Math.pow(Linha.Velocidade_horaria_vento, 0.16)) + (0.3965 * Linha.Temp_ar * Math.pow(Linha.Velocidade_horaria_vento, 0.16))).toFixed(2);
+
+                    return true;
+                }
+            } else {
+                console.log("Não foi possível encontrar nenhum resultado para a colte dos dados do dia requisitado pelo usuário.");
+                return false;
+            }
+        } catch (error) {
+            console.error('Erro ao processar as informações:', error.stack);
+            return false;
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        return false;
+    }
+}
+
+function BuscarMediaNaPrevisao(){
+    return true;
+}
+
+
+
+async function DefinirDados() {
+    if (BuscarHoraNoHistorico() && BuscarMediaNoHistorico()) {
+        Fonte = 'Medição';
+
+        ChuvaTotal = 22;
+        TemperaturaMinimaAbsoluta = 11;
+        TemperaturaMaximaAbsoluta = 24;
+        PressaoMediaAbsoluta = 732;
+        UmidadeMediaAbsoluta = 77;
+        VentoMedio = 8.5;
+
         Chuva = 6;
         RadiacaoSolar = 600;
         TemperaturaMinima = 12;
@@ -347,62 +363,83 @@ else{
         Vento = 7;
         VentoRajada = 11;
         SensacaoTermica = 24;
-    }
-    else if( Hora in LinhasDiaPrevisao){
-        Fonte = 'Previsão'
+    } 
+    else if (BuscarMediaNaPrevisao()) {
+        ChuvaTotal = 22;
+        TemperaturaMinimaAbsoluta = 11;
+        TemperaturaMaximaAbsoluta = 24;
+        PressaoMediaAbsoluta = 732;
+        UmidadeMediaAbsoluta = 77;
+        VentoMedio = 8.5;
 
-        // Coleta os valores específicos da hora desejada pela tabela "Previsao"
-        Chuva = 6;
-        RadiacaoSolar = 600;
-        TemperaturaMinima = 12;
-        TemperaturaMedia = 15;
-        TemperaturaMaxima = 21;
-        TemperaturaPontoDeOrvalhoMinima = 2;
-        TemperaturaPontoDeOrvalhoMedia = 3;
-        TemperaturaPontoDeOrvalhoMaxima = 4;
-        PressaoMinima = 650;
-        PressaoMedia = 720;
-        PressaoMaxima = 831;
-        UmidadeMinima = 73;
-        UmidadeMedia = 75;
-        UmidadeMaxima = 76;
-        DirecaoVento = 192;
-        Vento = 7;
-        VentoRajada = 11;
-        SensacaoTermica = 24;
+        // Descobre se pelo menos os valores da hora escolhida pelo usuário já foram coletados
+        if (BuscarHoraNoHistorico()) {
+            Fonte = 'Medição/Previsão';
+
+            Chuva = 6;
+            RadiacaoSolar = 600;
+            TemperaturaMinima = 12;
+            TemperaturaMedia = 15;
+            TemperaturaMaxima = 21;
+            TemperaturaPontoDeOrvalhoMinima = 2;
+            TemperaturaPontoDeOrvalhoMedia = 3;
+            TemperaturaPontoDeOrvalhoMaxima = 4;
+            PressaoMinima = 650;
+            PressaoMedia = 720;
+            PressaoMaxima = 831;
+            UmidadeMinima = 73;
+            UmidadeMedia = 75;
+            UmidadeMaxima = 76;
+            DirecaoVento = 192;
+            Vento = 7;
+            VentoRajada = 11;
+            SensacaoTermica = 24;
+        } 
+        else if (await BuscarHoraNaPrevisao()) {
+            Fonte = 'Previsão';
+        }
+    } 
+    else {
+        Fonte = 'Error';
+        alert("Os dados requisitados por você não estão disponíveis no sistema. Altere os valores selecionados na configuração do site para tentar novamente.");
     }
-    else{
-        // O valor desejado encontra-se indisponível no sistema
-    }*/
+
+    console.log(Fonte);
 }
 
 //----------------------------------------------------------------------------------------------------------------
 
-MiniGraficoCircularSVG('#InfoPluviometria', ChuvaTotal, 50, CorGraficos, 'Pluviometria', IconeChuva, ' mm');
-MiniGraficoCircularSVG('#InfoTemperaturaMinima', TemperaturaMinimaAbsoluta, 50, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
-MiniGraficoCircularSVG('#InfoTemperaturaMaxima', TemperaturaMaximaAbsoluta, 50, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
-MiniGraficoCircularSVG('#InfoPressaoAtmosferica', PressaoMediaAbsoluta, 1000, CorGraficos, 'Pressao Atmosferica', IconePressaoAtomsfericaMedia, ' mB');
-MiniGraficoCircularSVG('#InfoUmidade', UmidadeMediaAbsoluta, 100, CorGraficos, 'Umidade', IconeUmidadeMedia, ' %');
-MiniGraficoCircularSVG('#InfoVento', VentoMedio, 40, CorGraficos, 'Vento', IconeVento, ' m/s');
+async function AtualizarExibirGraficos() {
+    await DefinirDados();
 
-GraficoCircularSVG('#GraficoChuva', Chuva, 30, CorGraficos, 'Chuva', IconeChuva, ' mm');
-GraficoCircularSVG('#GraficoRadiacaoSolar', RadiacaoSolar, 1000, CorGraficos, 'Radiacao Solar', IconeRadiacaoSolar, ' Kj');
-GraficoCircularSVG('#GraficoSensacaoTermica', SensacaoTermica, 50, CorGraficos, 'Sensacao Termica', IconeSensacaoTermica, ' °C');
-GraficoCircularSVG('#GraficoTemperaturaMinima', TemperaturaMinima, 50, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
-GraficoCircularSVG('#GraficoTemperaturaMedia', TemperaturaMedia, 50, CorGraficos, 'Temperatura Media', IconeTemperaturaMedia, ' °C');
-GraficoCircularSVG('#GraficoTemperaturaMaxima', TemperaturaMaxima, 50, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
-GraficoCircularSVG('#GraficoPontoDeOrvalhoMinimo', TemperaturaPontoDeOrvalhoMinima, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Minima', IconePontoDeOrvalhoMinimo, ' °C');
-GraficoCircularSVG('#GraficoPontoDeOrvalhoMedio', TemperaturaPontoDeOrvalhoMedia, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Media', IconePontoDeOrvalhoMedio, ' °C');
-GraficoCircularSVG('#GraficoPontoDeOrvalhoMaximo', TemperaturaPontoDeOrvalhoMaxima, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Maxima', IconePontoDeOrvalhoMaximo, ' °C');
-GraficoCircularSVG('#GraficoPressaoMinima', PressaoMinima, 1000, CorGraficos, 'Pressao Atmosferica Minima', IconePressaoAtomsfericaMinima, ' mB');
-GraficoCircularSVG('#GraficoPressaoMedia', PressaoMedia, 1000, CorGraficos, 'Pressao Atmosferica Media', IconePressaoAtomsfericaMedia, ' mB');
-GraficoCircularSVG('#GraficoPressaoMaxima', PressaoMaxima, 1000, CorGraficos, 'Pressao Atmosferica Maxima', IconePressaoAtomsfericaMaxima, ' mB');
-GraficoCircularSVG('#GraficoUmidadeDoArMinima', UmidadeMinima, 100, CorGraficos, 'Umidade do Ar Minima', IconeUmidadeMinima, ' %');
-GraficoCircularSVG('#GraficoUmidadeDoArMedia', UmidadeMedia, 100, CorGraficos, 'Umidade do Ar Media', IconeUmidadeMedia, ' %');
-GraficoCircularSVG('#GraficoUmidadeDoArMaxima', UmidadeMaxima, 100, CorGraficos, 'Umidade do Ar Maxima', IconeUmidadeMinima, ' %');
-GraficoCircularSVG('#GraficoDirecaoVento', DirecaoVento, 360, CorGraficos, 'Direcao do Vento', IconeDirecaoVento, '°');
-GraficoCircularSVG('#GraficoVelocidadeVento', Vento, 30, CorGraficos, 'Velocidade do Vento', IconeVento, ' m/s');
-GraficoCircularSVG('#GraficoVelocidadeRajadaVento', VentoRajada, 30, CorGraficos, 'Velocidade de Rajada do Vento', IconeVentoRajada, ' m/s');
+    MiniGraficoCircularSVG('#InfoPluviometria', ChuvaTotal, 50, CorGraficos, 'Pluviometria', IconeChuva, ' mm');
+    MiniGraficoCircularSVG('#InfoTemperaturaMinima', TemperaturaMinimaAbsoluta, 50, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
+    MiniGraficoCircularSVG('#InfoTemperaturaMaxima', TemperaturaMaximaAbsoluta, 50, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
+    MiniGraficoCircularSVG('#InfoPressaoAtmosferica', PressaoMediaAbsoluta, 1000, CorGraficos, 'Pressao Atmosferica', IconePressaoAtomsfericaMedia, ' mB');
+    MiniGraficoCircularSVG('#InfoUmidade', UmidadeMediaAbsoluta, 100, CorGraficos, 'Umidade', IconeUmidadeMedia, ' %');
+    MiniGraficoCircularSVG('#InfoVento', VentoMedio, 40, CorGraficos, 'Vento', IconeVento, ' m/s');
+
+    GraficoCircularSVG('#GraficoChuva', Chuva, 30, CorGraficos, 'Chuva', IconeChuva, ' mm');
+    GraficoCircularSVG('#GraficoRadiacaoSolar', RadiacaoSolar, 1000, CorGraficos, 'Radiacao Solar', IconeRadiacaoSolar, ' Kj');
+    GraficoCircularSVG('#GraficoSensacaoTermica', SensacaoTermica, 50, CorGraficos, 'Sensacao Termica', IconeSensacaoTermica, ' °C');
+    GraficoCircularSVG('#GraficoTemperaturaMinima', TemperaturaMinima, 50, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
+    GraficoCircularSVG('#GraficoTemperaturaMedia', TemperaturaMedia, 50, CorGraficos, 'Temperatura Media', IconeTemperaturaMedia, ' °C');
+    GraficoCircularSVG('#GraficoTemperaturaMaxima', TemperaturaMaxima, 50, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
+    GraficoCircularSVG('#GraficoPontoDeOrvalhoMinimo', TemperaturaPontoDeOrvalhoMinima, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Minima', IconePontoDeOrvalhoMinimo, ' °C');
+    GraficoCircularSVG('#GraficoPontoDeOrvalhoMedio', TemperaturaPontoDeOrvalhoMedia, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Media', IconePontoDeOrvalhoMedio, ' °C');
+    GraficoCircularSVG('#GraficoPontoDeOrvalhoMaximo', TemperaturaPontoDeOrvalhoMaxima, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Maxima', IconePontoDeOrvalhoMaximo, ' °C');
+    GraficoCircularSVG('#GraficoPressaoMinima', PressaoMinima, 1000, CorGraficos, 'Pressao Atmosferica Minima', IconePressaoAtomsfericaMinima, ' mB');
+    GraficoCircularSVG('#GraficoPressaoMedia', PressaoMedia, 1000, CorGraficos, 'Pressao Atmosferica Media', IconePressaoAtomsfericaMedia, ' mB');
+    GraficoCircularSVG('#GraficoPressaoMaxima', PressaoMaxima, 1000, CorGraficos, 'Pressao Atmosferica Maxima', IconePressaoAtomsfericaMaxima, ' mB');
+    GraficoCircularSVG('#GraficoUmidadeDoArMinima', UmidadeMinima, 100, CorGraficos, 'Umidade do Ar Minima', IconeUmidadeMinima, ' %');
+    GraficoCircularSVG('#GraficoUmidadeDoArMedia', UmidadeMedia, 100, CorGraficos, 'Umidade do Ar Media', IconeUmidadeMedia, ' %');
+    GraficoCircularSVG('#GraficoUmidadeDoArMaxima', UmidadeMaxima, 100, CorGraficos, 'Umidade do Ar Maxima', IconeUmidadeMinima, ' %');
+    GraficoCircularSVG('#GraficoDirecaoVento', DirecaoVento, 360, CorGraficos, 'Direcao do Vento', IconeDirecaoVento, '°');
+    GraficoCircularSVG('#GraficoVelocidadeVento', Vento, 30, CorGraficos, 'Velocidade do Vento', IconeVento, ' m/s');
+    GraficoCircularSVG('#GraficoVelocidadeRajadaVento', VentoRajada, 30, CorGraficos, 'Velocidade de Rajada do Vento', IconeVentoRajada, ' m/s');
+}
+
+AtualizarExibirGraficos()
 
 //----------------------------------------------------------------------------------------------------------------
 

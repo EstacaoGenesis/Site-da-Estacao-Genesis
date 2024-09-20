@@ -1,5 +1,6 @@
 //Importa as ferramentas utilizadas pelo codigo
 const express = require('express');
+const dayjs = require('dayjs');
 const mysql = require('mysql2');
 const path = require('path');
 require('dotenv').config();
@@ -29,6 +30,12 @@ const dbPrevisao = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE_PREVISAO
 });
+
+
+// Função para converter data do formato 'YYYY-MM-DDTHH:mm:ss.000Z' para 'DD/MM/YYYY'
+function FormatarData(dataISO) {
+  return dayjs(dataISO).format('DD/MM/YYYY');
+}
 
 
 // Executa a conexão do backend da aplicação com os três bancos de dados do projeto
@@ -80,7 +87,15 @@ app.get('/previsao', (req, res) => {
       res.status(500).send('Erro ao buscar dados da previsão.');
       return;
     }
-    res.json(results);
+
+    const ListaDadosConvertidos = results.map(linha => {
+      return {
+        ...linha,
+        Dia: FormatarData(linha.Data)
+      };
+    });
+
+    res.json(ListaDadosConvertidos);
   });
 });
 
