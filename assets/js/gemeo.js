@@ -7,38 +7,156 @@ import { Sky } from 'Sky';
 
 //----------------------------------------------------------------------------------------------------------------
 // Descobre qual dos dados sobre o tempo o usuário deseja
-let DadosEstacao = 'Estacao3101';
-let DadosData = '25/06/2021';
-let DadosHora = 12;
+let DadosEstacao = "MG-01";
+let DadosData = "30/12/2022";
+let DadosHora = "23:00:16";
+let DadosHoraNumero = parseInt(DadosHora.substring(0, 2));
 
 let QualidadeGraficos = "Alto";
-
 let CorGraficos = '#00BFFF';
 
 //----------------------------------------------------------------------------------------------------------------
-/*
-// Coleta a linha do dia desejado das tabelas "Historico" e "Previsao"
-  if(Hora in LinhasDiaHistorico){
-      // Calcula os parâmetros específicos da hora desejada
-  }
-  else if( Hora in LinhasDiaPrevisao){
-      // Calcula os parâmetros específicos da hora desejada
-  }
-  else{
-      // O valor desejado encontra-se indisponível no sistema
+
+let Chuva, RadiacaoSolar, PressaoMedia, TemperaturaMedia, TemperaturaPontoDeOrvalho, UmidadeMedia, DirecaoVento, Vento, VentoRajada;
+
+//----------------------------------------------------------------------------------------------------------------
+
+// Funções responsáveis por coletar os dados do banco de dados do projeto
+async function BuscarHoraNoHistorico() {
+  try {
+      // Busca os dados desejados na tabela de historico
+      const response = await fetch(`http://localhost:5500/historico?dia=${DadosData}&estacao=${DadosEstacao}`);
+      
+      // Verifica se a resposta foi bem-sucedida
+      if (!response.ok) {
+          console.log('Erro na resposta da requisição: ' + response.status);
+          return false;
+      }
+
+      // Coleta os dados recebidos na requisição
+      const data = await response.json();
+      // Exibe todos os dados coletados no console da aplicação
+      console.log('Dados do histórico:', data);
+
+      try {
+          // Filtra as linhas onde a variável Estacao é igual a "MG-01"
+          const LinhasDesejadasHistorico = data.filter(linha => linha.Estacao === Estacao || linha.Estacao === Estacao+"\r");
+
+          // Conta o número de linhas que cumprem com esses requisitos
+          const NumeroLinhasDesejadasHistorico = LinhasDesejadasHistorico.length;
+          if (NumeroLinhasDesejadasHistorico == 24) {
+              // Exibe no console o número de linhas que contém a estação escolhida pelo usário como valor de Estacao
+              console.log('Número de linhas desejdas para a estação definidos pelo usuário: ', NumeroLinhasDesejadasHistorico);
+
+              // Coleta a linha que possui as informações correspondentes a hora requisitada pelo usuário
+              const LinhaHoraDesejadaHistorico = LinhasDesejadasHistorico.filter(linha => linha.Hora === DadosHora);
+              if (LinhaHoraDesejadaHistorico.length === 0) {
+                  console.log("A hora desejada não está disponível no banco de dados do historico");
+                  return false;
+              } else {
+                  // Exibe no console a linha da hora desejada pelo usuário
+                  console.log('Linha da hora desejda pelo usuário:', LinhaHoraDesejadaHistorico);
+                  
+                  const Linha = LinhaHoraDesejadaHistorico[0];
+                  console.log(Linha);
+
+                  Chuva = Linha.Precipitacao_horario_total_mm.toFixed(2);
+                  RadiacaoSolar = Linha.Radiacao_global.toFixed(2);
+                  PressaoMedia = Linha.PA_horaria_nivel_estacao.toFixed(2);
+                  TemperaturaMedia = Linha.Temp_ar.toFixed(2);
+                  TemperaturaPontoDeOrvalho = Linha.Temp_ponto_orvalho.toFixed(2);
+                  UmidadeMedia = Linha.Umidade_relativa_do_ar.toFixed(2);
+                  DirecaoVento = Linha.Direcao_horaria_vento_partir_norte;
+                  DirecaoVento = parseFloat(DirecaoVento).toFixed(2);
+                  Vento = Linha.Velocidade_horaria_vento.toFixed(2);
+                  VentoRajada = Linha.Velocidade_rajada_vento.toFixed(2);
+                  
+                  return true;
+              }
+          } else {
+              console.log("Não foi possível encontrar nenhum resultado para a coleta dos dados do dia requisitado pelo usuário.");
+              return false;
+          }
+      } catch (error) {
+          console.error('Erro ao processar as informações:', error.stack);
+          return false;
+      }
+  } catch (error) {
+      console.error('Erro ao buscar dados do histórico:', error.stack);
+      return false;
   }
 }
-*/
 
-let Chuva = 0;
-let RadiacaoSolar = 600;
-let PressaoMedia = 720;
-let TemperaturaMedia = 12;
-let TemperaturaPontoDeOrvalho= 11;
-let UmidadeMedia = 70;
-let DirecaoVento = 192;
-let Vento = 2.2;
-let VentoRajada = 2.4;
+async function BuscarHoraNaPrevisao() {
+  try {
+      // Busca os dados desejados na tabela de previsao
+      const response = await fetch('http://localhost:5500/previsao');
+      const data = await response.json();
+
+      // Exibe todos os dados coletados no console da aplicação
+      console.log('Dados da previsão:', data);
+
+      try {
+          // Filtra as linhas onde a variável Estacao é igual a "MG-01" e a variável Dia é igual a data selecionada pelo usuário
+          const LinhasDesejadasPrevisao = data.filter(linha => linha.Estacao === DadosEstacao && linha.Dia === DadosData);
+
+          // Conta o número de linhas que cumprem com esses requisitos
+          const NumeroLinhasDesejadasPrevisao = LinhasDesejadasPrevisao.length;
+          if (NumeroLinhasDesejadasPrevisao == 24) {
+              // Exibe no console o número de linhas que contém MG-01 como valor de Estacao
+              console.log('Número de linhas desejdas para os valores de dia e estação definidos pelo usuário:', NumeroLinhasDesejadasPrevisao);
+
+              // Coleta a linha que possui as informações correspondentes a hora requisitada pelo usuário
+              const LinhaHoraDesejadaPrevisao = LinhasDesejadasPrevisao.filter(linha => linha.Hora === DadosHora);
+              if (LinhaHoraDesejadaPrevisao.length === 0) {
+                  console.log("A hora desejada não está disponível no banco de dados da previsao");
+                  return false;
+              } else {
+                  // Exibe no console a linha da hora desejada pelo usuário
+                  console.log('Linha da hora desejda pelo usuário:', LinhaHoraDesejadaPrevisao);
+                  
+                  const Linha = LinhaHoraDesejadaPrevisao[0];
+                  
+                  Chuva = Linha.Precipitacao_horario_total_mm.toFixed(2);
+                  RadiacaoSolar = Linha.Radiacao_global.toFixed(2);
+                  PressaoMedia = Linha.PA_horaria_nivel_estacao.toFixed(2);
+                  TemperaturaMedia = Linha.Temp_ar.toFixed(2);
+                  TemperaturaPontoDeOrvalho = Linha.Temp_ponto_orvalho.toFixed(2);
+                  UmidadeMedia = Linha.Umidade_relativa_do_ar.toFixed(2);
+                  DirecaoVento = Linha.Direcao_horaria_vento_partir_norte;
+                  DirecaoVento = parseFloat(DirecaoVento).toFixed(2);
+                  Vento = Linha.Velocidade_horaria_vento.toFixed(2);
+                  VentoRajada = Linha.Velocidade_rajada_vento.toFixed(2);
+
+                  return true;
+              }
+          } else {
+              console.log("Não foi possível encontrar nenhum resultado para a colte dos dados do dia requisitado pelo usuário.");
+              return false;
+          }
+      } catch (error) {
+          console.error('Erro ao processar as informações:', error.stack);
+          return false;
+      }
+  } catch (error) {
+      console.error('Erro:', error);
+      return false;
+  }
+}
+
+// Define se os dados do banco de dados serão coletados do historico ou da previsão
+async function DefinirDados() {
+  if (await BuscarHoraNoHistorico()) {
+    console.log("Fonte: Histórico");
+  }
+  else if (await BuscarHoraNaPrevisao()) {
+    console.log("Fonte: Previsão");
+  }
+  else {
+    alert("Os dados requisitados por você não estão disponíveis no sistema. Altere os valores selecionados na configuração do site para tentar novamente.");
+  }
+}
+
 let RadiacaoUV = 730;
 
 //-----------------------------------------------------------------------------------------------------------
@@ -68,29 +186,29 @@ scene.add( sky );
 //-----------------------------------------------------------------------------------------------------------
 // Luz Ambiente (Luz geral da cena)
 let LuminosidadeGeral
-if(DadosHora == 0) {LuminosidadeGeral = 0}
-else if(DadosHora == 1) {LuminosidadeGeral = 0}
-else if(DadosHora == 2) {LuminosidadeGeral = 0}
-else if(DadosHora == 3) {LuminosidadeGeral = 0}
-else if(DadosHora == 4) {LuminosidadeGeral = 0}
-else if(DadosHora == 5) {LuminosidadeGeral = 0.05}
-else if(DadosHora == 6) {LuminosidadeGeral = 0.10}
-else if(DadosHora == 7) {LuminosidadeGeral = 0.20}
-else if(DadosHora == 8) {LuminosidadeGeral = 0.25}
-else if(DadosHora == 9) {LuminosidadeGeral = 0.30}
-else if(DadosHora == 10) {LuminosidadeGeral = 0.30}
-else if(DadosHora == 11) {LuminosidadeGeral = 0.45}
-else if(DadosHora == 12) {LuminosidadeGeral = 0.50}
-else if(DadosHora == 13) {LuminosidadeGeral = 0.50}
-else if(DadosHora == 14) {LuminosidadeGeral = 0.45}
-else if(DadosHora == 15) {LuminosidadeGeral = 0.35}
-else if(DadosHora == 16) {LuminosidadeGeral = 0.35}
-else if(DadosHora == 17) {LuminosidadeGeral = 0.25}
-else if(DadosHora == 18) {LuminosidadeGeral = 0.25}
-else if(DadosHora == 19) {LuminosidadeGeral = 0.15}
-else if(DadosHora == 20) {LuminosidadeGeral = 0.10}
-else if(DadosHora == 21) {LuminosidadeGeral = 0}
-else if(DadosHora == 23) {LuminosidadeGeral = 0}
+if(DadosHoraNumero == 0) {LuminosidadeGeral = 0}
+else if(DadosHoraNumero == 1) {LuminosidadeGeral = 0}
+else if(DadosHoraNumero == 2) {LuminosidadeGeral = 0}
+else if(DadosHoraNumero == 3) {LuminosidadeGeral = 0}
+else if(DadosHoraNumero == 4) {LuminosidadeGeral = 0}
+else if(DadosHoraNumero == 5) {LuminosidadeGeral = 0.05}
+else if(DadosHoraNumero == 6) {LuminosidadeGeral = 0.10}
+else if(DadosHoraNumero == 7) {LuminosidadeGeral = 0.20}
+else if(DadosHoraNumero == 8) {LuminosidadeGeral = 0.25}
+else if(DadosHoraNumero == 9) {LuminosidadeGeral = 0.30}
+else if(DadosHoraNumero == 10) {LuminosidadeGeral = 0.30}
+else if(DadosHoraNumero == 11) {LuminosidadeGeral = 0.45}
+else if(DadosHoraNumero == 12) {LuminosidadeGeral = 0.50}
+else if(DadosHoraNumero == 13) {LuminosidadeGeral = 0.50}
+else if(DadosHoraNumero == 14) {LuminosidadeGeral = 0.45}
+else if(DadosHoraNumero == 15) {LuminosidadeGeral = 0.35}
+else if(DadosHoraNumero == 16) {LuminosidadeGeral = 0.35}
+else if(DadosHoraNumero == 17) {LuminosidadeGeral = 0.25}
+else if(DadosHoraNumero == 18) {LuminosidadeGeral = 0.25}
+else if(DadosHoraNumero == 19) {LuminosidadeGeral = 0.15}
+else if(DadosHoraNumero == 20) {LuminosidadeGeral = 0.10}
+else if(DadosHoraNumero == 21) {LuminosidadeGeral = 0}
+else if(DadosHoraNumero == 23) {LuminosidadeGeral = 0}
 
 const ambientLight = new THREE.AmbientLight(0xffffff, LuminosidadeGeral);
 scene.add(ambientLight);
@@ -115,37 +233,37 @@ directionalLight.shadow.camera.top = 500;
 directionalLight.shadow.camera.bottom = -500;
 
 let Turbidez, Direcionamento, InclinacaoSolar
-if(DadosHora == 20 || DadosHora == 21 || DadosHora == 22 || DadosHora == 23 || DadosHora == 24 || DadosHora == 1){
+if(DadosHoraNumero == 20 || DadosHoraNumero == 21 || DadosHoraNumero == 22 || DadosHoraNumero == 23 || DadosHoraNumero == 24 || DadosHoraNumero == 1){
   InclinacaoSolar = 270
   Turbidez = 15
   Direcionamento = 20
 }
-else if(DadosHora == 5 || DadosHora == 6) {
+else if(DadosHoraNumero == 5 || DadosHoraNumero == 6) {
   InclinacaoSolar = 5
   Turbidez = 10
   Direcionamento = 15
 }
-else if(DadosHora == 7 || DadosHora == 8 || DadosHora == 9) {
+else if(DadosHoraNumero == 7 || DadosHoraNumero == 8 || DadosHoraNumero == 9) {
   InclinacaoSolar = 25
   Turbidez = 5000
   Direcionamento = 2
 }
-else if(DadosHora == 10 || DadosHora == 11 || DadosHora == 12 || DadosHora == 13) {
+else if(DadosHoraNumero == 10 || DadosHoraNumero == 11 || DadosHoraNumero == 12 || DadosHoraNumero == 13) {
   InclinacaoSolar = 35
   Turbidez = 7500
   Direcionamento = 1.5
 }
-else if(DadosHora == 14 || DadosHora == 15) {
+else if(DadosHoraNumero == 14 || DadosHoraNumero == 15) {
   InclinacaoSolar = 155
   Turbidez = 5000
   Direcionamento = 2
 }
-else if(DadosHora == 16 || DadosHora == 17) {
+else if(DadosHoraNumero == 16 || DadosHoraNumero == 17) {
   InclinacaoSolar = 165
   Turbidez = 50000
   Direcionamento = 10
 }
-else if(DadosHora == 18 || DadosHora == 19) {
+else if(DadosHoraNumero == 18 || DadosHoraNumero == 19) {
   InclinacaoSolar = 175
   Turbidez = 25000
   Direcionamento = 10
@@ -190,11 +308,17 @@ guiChanged();
 
 //-----------------------------------------------------------------------------------------------------------
 // Neblina
-if(QualidadeGraficos == "Alto" || QualidadeGraficos == "Medio"){
-  if(UmidadeMedia >= 90 && TemperaturaMedia-2 < TemperaturaPontoDeOrvalho && Vento <= 2.5 && RadiacaoSolar <= 800){
-    scene.fog = new THREE.FogExp2(0xaaaaaa, 0.03);
+async function SetarNeblina() {
+  await DefinirDados();
+
+  if(QualidadeGraficos == "Alto" || QualidadeGraficos == "Medio"){
+    if(UmidadeMedia >= 90 && TemperaturaMedia-2 < TemperaturaPontoDeOrvalho && Vento <= 2.5 && RadiacaoSolar <= 800){
+      scene.fog = new THREE.FogExp2(0xaaaaaa, 0.03);
+    }
   }
 }
+
+SetarNeblina();
 
 //-----------------------------------------------------------------------------------------------------------
 // Modelo 3D da Estação Genesis
@@ -503,24 +627,30 @@ let rain
 const collidingDrops = new Set();
 // Criar as partículas de chuva
 const rainGeometry = new THREE.BufferGeometry();
-
-let rainCount
-if(Chuva > 0){
-  if(QualidadeGraficos == "Alto"){
-    rainCount = Chuva*50000;
-  }
-  else if(QualidadeGraficos == "Medio"){
-    rainCount = Chuva*25000;
-  }
-  else if(QualidadeGraficos == "Baixo"){
-    rainCount = Chuva*10000;
-  }
-}
+let rainCount;
 
 const rainVertices = [];
 
 // Área reduzida de 100 por 100
 const rainAreaSize = 100;
+
+async function SetarChuva() {
+  await DefinirDados();
+  
+  if(Chuva > 0){
+    if(QualidadeGraficos == "Alto"){
+      rainCount = Chuva*50000;
+    }
+    else if(QualidadeGraficos == "Medio"){
+      rainCount = Chuva*25000;
+    }
+    else if(QualidadeGraficos == "Baixo"){
+      rainCount = Chuva*10000;
+    }
+  }
+}
+
+SetarChuva();
 
 for (let i = 0; i < rainCount; i++) {
     const x = Math.random() * rainAreaSize - rainAreaSize / 2;
@@ -754,12 +884,22 @@ const IconeVentoRajada = '/assets/SVG/VentoForte.svg';
 
 //----------------------------------------------------------------------------------------------------------------
 
-MiniGraficoCircularSVG('#GraficoChuva', Chuva, 30, CorGraficos, 'Chuva', IconeChuva, ' mm');
-MiniGraficoCircularSVG('#GraficoRadiacaoSolar', RadiacaoSolar, 1000, CorGraficos, 'Radiacao Solar', IconeRadiacaoSolar, ' Kj');
-MiniGraficoCircularSVG('#GraficoTemperaturaMedia', TemperaturaMedia, 50, CorGraficos, 'Temperatura Media', IconeTemperaturaMedia, ' °C');
-MiniGraficoCircularSVG('#GraficoPressaoMedia', PressaoMedia, 1000, CorGraficos, 'Pressao Atmosferica Media', IconePressaoAtomsfericaMedia, ' mB');
-MiniGraficoCircularSVG('#GraficoUmidadeDoArMedia', UmidadeMedia, 100, CorGraficos, 'Umidade do Ar Media', IconeUmidadeMedia, ' %');
-MiniGraficoCircularSVG('#GraficoDirecaoVento', DirecaoVento, 360, CorGraficos, 'Direcao do Vento', IconeDirecaoVento, '°');
-MiniGraficoCircularSVG('#GraficoVelocidadeVento', Vento, 30, CorGraficos, 'Velocidade do Vento', IconeVento, ' m/s');
-MiniGraficoCircularSVG('#GraficoVelocidadeRajadaVento', VentoRajada, 30, CorGraficos, 'Velocidade de Rajada do Vento', IconeVentoRajada, ' m/s');
-MiniGraficoCircularSVG('#GraficoRadiacaoUV', RadiacaoUV, 1000, CorGraficos, 'Radiacao UV', IconeRadiacaoSolar, ' Kj');
+async function SetarGraficos() {
+  await DefinirDados();
+
+  console.log("Direcao do vento");
+  console.log(DirecaoVento);
+  console.log(typeof DirecaoVento);
+
+  MiniGraficoCircularSVG('#GraficoChuva', Chuva, 30, CorGraficos, 'Chuva', IconeChuva, ' mm');
+  MiniGraficoCircularSVG('#GraficoRadiacaoSolar', RadiacaoSolar, 1000, CorGraficos, 'Radiacao Solar', IconeRadiacaoSolar, ' Kj');
+  MiniGraficoCircularSVG('#GraficoTemperaturaMedia', TemperaturaMedia, 50, CorGraficos, 'Temperatura Media', IconeTemperaturaMedia, ' °C');
+  MiniGraficoCircularSVG('#GraficoPressaoMedia', PressaoMedia, 1000, CorGraficos, 'Pressao Atmosferica Media', IconePressaoAtomsfericaMedia, ' mB');
+  MiniGraficoCircularSVG('#GraficoUmidadeDoArMedia', UmidadeMedia, 100, CorGraficos, 'Umidade do Ar Media', IconeUmidadeMedia, ' %');
+  MiniGraficoCircularSVG('#GraficoDirecaoVento', DirecaoVento, 360, CorGraficos, 'Direcao do Vento', IconeDirecaoVento, '°');
+  MiniGraficoCircularSVG('#GraficoVelocidadeVento', Vento, 30, CorGraficos, 'Velocidade do Vento', IconeVento, ' m/s');
+  MiniGraficoCircularSVG('#GraficoVelocidadeRajadaVento', VentoRajada, 30, CorGraficos, 'Velocidade de Rajada do Vento', IconeVentoRajada, ' m/s');
+  MiniGraficoCircularSVG('#GraficoRadiacaoUV', RadiacaoUV, 1000, CorGraficos, 'Radiacao UV', IconeRadiacaoSolar, ' Kj');
+}
+
+SetarGraficos();

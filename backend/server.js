@@ -1,9 +1,11 @@
 //Importa as ferramentas utilizadas pelo codigo
 const express = require('express');
 const dayjs = require('dayjs');
+const customParseFormat = require('dayjs/plugin/customParseFormat');
 const mysql = require('mysql2');
 const path = require('path');
 require('dotenv').config();
+dayjs.extend(customParseFormat);
 
 
 // Inicia a aplicação na porta escolhida
@@ -36,7 +38,10 @@ const dbPrevisao = mysql.createConnection({
 function FormatarData(dataISO) {
   return dayjs(dataISO).format('DD/MM/YYYY');
 }
-
+function DesformatarData(dataRecebida) {
+  const DataFormatoDAYJS = dayjs(dataRecebida, 'DD/MM/YYYY', true);
+  return DataFormatoDAYJS.format("YYYY-MM-DD");
+}
 
 // Executa a conexão do backend da aplicação com os três bancos de dados do projeto
 dbUsuarios.connect((err) => {
@@ -73,10 +78,18 @@ app.get('/usuarios', (req, res) => {
   });
 });
 app.get('/historico', (req, res) => {
-  dbHistorico.query('SELECT * FROM main', (err, results) => {
+  let { dia, estacao } = req.query;
+  dia = DesformatarData(dia);
+  
+  const query = `
+    SELECT * FROM main 
+    WHERE Data = ?
+  `;
+
+  dbHistorico.query(query, [dia], (err, results) => {
     if (err) {
-      res.status(500).send('Erro ao buscar dados do histórico.');
-      return;
+        console.error('Erro ao buscar dados:', err);
+        return res.status(500).send('Erro no servidor.');
     }
     res.json(results);
   });

@@ -1,7 +1,6 @@
 const range = document.getElementById('range');
 const range2 = document.getElementById('range2');
 
-// Função para atualizar o valor e a posição do rótulo
 const updateLabel = (input) => {
     const label = input.nextElementSibling;
     const value = +input.value;
@@ -17,13 +16,32 @@ const updateLabel = (input) => {
     label.innerHTML = value;
 };
 
-// Adiciona o evento de input ao primeiro intervalo
 range.addEventListener('input', (e) => updateLabel(e.target));
 
-// Adiciona o evento de input ao segundo intervalo
 range2.addEventListener('input', (e) => updateLabel(e.target));
 
-// Função de escala para ajuste da posição do rótulo
 const scale = (num, in_min, in_max, out_min, out_max) => {
     return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    const btnConfig = document.getElementById('btn-config');
+    const closeConfig = document.querySelector('.fechar-config');
+    const glassBackground = document.querySelector('.glass-background');
+    const paiCtConfig = document.querySelector('.pai-ct-config');
+  
+    btnConfig.addEventListener('click', () => {
+      glassBackground.classList.add('visible');
+      paiCtConfig.classList.add('open');
+    });
+  
+    closeConfig.addEventListener('click', () => {
+      glassBackground.classList.remove('visible');
+      paiCtConfig.classList.remove('open');
+    });
+  
+    glassBackground.addEventListener('click', () => {
+      glassBackground.classList.remove('visible');
+      paiCtConfig.classList.remove('open');
+    });
+  });

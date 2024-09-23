@@ -231,8 +231,10 @@ const IconeVentoRajada = '/assets/SVG/VentoForte.svg';
 
 let Estacao = "MG-01";
 let Data = "30/12/2022";
-let Hora = "21:20:00";
+let Hora = "21:00:00";
 let CorGraficos = 'rgb(255,0,160)';
+
+
 
 /*
 function coletarDados() {
@@ -255,12 +257,137 @@ let Chuva, RadiacaoSolar, TemperaturaMinima, TemperaturaMedia, TemperaturaMaxima
 
 
 // Funções responsáveis por coletar os dados do banco de dados do projeto
-function BuscarHoraNoHistorico() {
-    return false;
+async function BuscarHoraNoHistorico() {
+    try {
+        // Busca os dados desejados na tabela de historico
+        const response = await fetch(`http://localhost:5500/historico?dia=${Data}&estacao=${Estacao}`);
+        
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+            console.log('Erro na resposta da requisição: ' + response.status);
+            return false;
+        }
+
+        // Coleta os dados recebidos na requisição
+        const data = await response.json();
+        // Exibe todos os dados coletados no console da aplicação
+        console.log('Dados do histórico:', data);
+
+        try {
+            // Filtra as linhas onde a variável Estacao é igual a "MG-01"
+            const LinhasDesejadasHistorico = data.filter(linha => linha.Estacao === Estacao || linha.Estacao === Estacao+"\r");
+
+            // Conta o número de linhas que cumprem com esses requisitos
+            const NumeroLinhasDesejadasHistorico = LinhasDesejadasHistorico.length;
+            if (NumeroLinhasDesejadasHistorico == 24) {
+                // Exibe no console o número de linhas que contém a estação escolhida pelo usário como valor de Estacao
+                console.log('Número de linhas desejdas para a estação definidos pelo usuário: ', NumeroLinhasDesejadasHistorico);
+
+                // Coleta a linha que possui as informações correspondentes a hora requisitada pelo usuário
+                const LinhaHoraDesejadaHistorico = LinhasDesejadasHistorico.filter(linha => linha.Hora === Hora);
+                if (LinhaHoraDesejadaHistorico.length === 0) {
+                    console.log("A hora desejada não está disponível no banco de dados do historico");
+                    return false;
+                } else {
+                    // Exibe no console a linha da hora desejada pelo usuário
+                    console.log('Linha da hora desejda pelo usuário:', LinhaHoraDesejadaHistorico);
+                    
+                    const Linha = LinhaHoraDesejadaHistorico[0];
+                    console.log(Linha);
+
+                    Chuva = Linha.Precipitacao_horario_total_mm.toFixed(2);
+                    RadiacaoSolar = Linha.Radiacao_global.toFixed(2);
+                    TemperaturaMinima = Linha.Temp_min_hora_anterior.toFixed(2);
+                    TemperaturaMedia = Linha.Temp_ar.toFixed(2);
+                    TemperaturaMaxima = Linha.Temp_max_hora_anterior.toFixed(2);
+                    TemperaturaPontoDeOrvalhoMinima = Linha.Temp_ponto_orvalho_min_hora_anterior.toFixed(2);
+                    TemperaturaPontoDeOrvalhoMedia = Linha.Temp_ponto_orvalho.toFixed(2);
+                    TemperaturaPontoDeOrvalhoMaxima = Linha.Temp_ponto_orvalho_max_hora_anterior.toFixed(2);
+                    PressaoMinima = Linha.PA_min_hora_anterior.toFixed(2);
+                    PressaoMedia = Linha.PA_horaria_nivel_estacao.toFixed(2);
+                    PressaoMaxima = Linha.PA_max_hora_anterior.toFixed(2);
+                    UmidadeMinima = Linha.Umidade_relativa_ar_min_hora_anterior.toFixed(2);
+                    UmidadeMedia = Linha.Umidade_relativa_do_ar.toFixed(2);
+                    UmidadeMaxima = Linha.Umidade_relativa_ar_max_hora_anterior.toFixed(2);
+                    DirecaoVento = Linha.Direcao_horaria_vento_partir_norte;
+                    DirecaoVento = parseFloat(DirecaoVento).toFixed(2);
+                    Vento = Linha.Velocidade_horaria_vento.toFixed(2);
+                    VentoRajada = Linha.Velocidade_rajada_vento.toFixed(2);
+                    SensacaoTermica = (13.12 + (0.6215 * Number(TemperaturaMedia)) - (11.37 * Math.pow(Number(Vento), 0.16)) + (0.3965 * Number(TemperaturaMedia) * Math.pow(Number(Vento), 0.16))).toFixed(2);
+
+                    return true;
+                }
+            } else {
+                console.log("Não foi possível encontrar nenhum resultado para a colte dos dados do dia requisitado pelo usuário.");
+                return false;
+            }
+        } catch (error) {
+            console.error('Erro ao processar as informações:', error.stack);
+            return false;
+        }
+    } catch (error) {
+        console.error('Erro ao buscar dados do histórico:', error.stack);
+        return false;
+    }
 }
 
-function BuscarMediaNoHistorico() {
-    return false;
+async function BuscarMediaNoHistorico() {
+    try {
+        // Busca os dados desejados na tabela de historico
+        const response = await fetch(`http://localhost:5500/historico?dia=${Data}&estacao=${Estacao}`);
+        
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+            console.log('Erro na resposta da requisição: ' + response.status);
+            return false;
+        }
+
+        // Coleta os dados recebidos na requisição
+        const data = await response.json();
+        // Exibe todos os dados coletados no console da aplicação
+        console.log('Dados do histórico:', data);
+
+        try {
+            // Filtra as linhas onde a variável Estacao é igual a "MG-01"
+            const LinhasDesejadasHistorico = data.filter(linha => linha.Estacao === Estacao || linha.Estacao === Estacao+"\r");
+
+            // Conta o número de linhas que cumprem com esses requisitos
+            const NumeroLinhasDesejadasHistorico = LinhasDesejadasHistorico.length;
+            if (NumeroLinhasDesejadasHistorico >= 24) {
+                // Exibe no console o número de linhas que contém a estação escolhida pelo usário como valor de Estacao
+                console.log('Número de linhas desejdas para a estação definidos pelo usuário: ', NumeroLinhasDesejadasHistorico);
+
+                //Descobre se a última hora coletada do banco de dados corresponde a ao menos às 23 horas
+                let UltimaLinhaDesejadaHistorico = LinhasDesejadasHistorico[23];
+                let HoraUltimaLinha = parseInt(UltimaLinhaDesejadaHistorico.Hora.split(":")[0], 10);
+                if (HoraUltimaLinha >= 23) {
+                    console.log("A media dos dados diários pode ser calculada com base nos dados do historico");
+                    
+                    TemperaturaMaximaAbsoluta = (Math.max(...LinhasDesejadasHistorico.map(linha => linha.Temp_max_hora_anterior))).toFixed(2);
+                    TemperaturaMinimaAbsoluta = (Math.min(...LinhasDesejadasHistorico.map(linha => linha.Temp_min_hora_anterior))).toFixed(2);
+                    ChuvaTotal = (LinhasDesejadasHistorico.reduce((acc, linha) => acc + linha.Precipitacao_horario_total_mm, 0)).toFixed(2);
+                    PressaoMediaAbsoluta = (LinhasDesejadasHistorico.reduce((acc, linha) => acc + linha.PA_horaria_nivel_estacao, 0) / NumeroLinhasDesejadasHistorico).toFixed(2);
+                    UmidadeMediaAbsoluta = (LinhasDesejadasHistorico.reduce((acc, linha) => acc + linha.Umidade_relativa_do_ar, 0) / NumeroLinhasDesejadasHistorico).toFixed(2);
+                    VentoMedio = (LinhasDesejadasHistorico.reduce((acc, linha) => acc + linha.Velocidade_horaria_vento, 0) / NumeroLinhasDesejadasHistorico).toFixed(2);
+
+                    return true;
+                }
+                else {
+                    console.log("A media dos dados diários ainda não pode ser calculada com base nos dados do historico");
+                    return false;
+                }
+            } else {
+                console.log("Não foi possível encontrar resultados suficientes na coleta dos dados do dia requisitado pelo usuário.");
+                return false;
+            }
+        } catch (error) {
+            console.error('Erro ao processar as informações:', error.stack);
+            return false;
+        }
+    } catch (error) {
+        console.error('Erro ao buscar dados do histórico:', error.stack);
+        return false;
+    }
 }
 
 async function BuscarHoraNaPrevisao() {
@@ -307,10 +434,11 @@ async function BuscarHoraNaPrevisao() {
                     UmidadeMinima = Linha.Umidade_relativa_ar_min_hora_anterior.toFixed(2);
                     UmidadeMedia = Linha.Umidade_relativa_do_ar.toFixed(2);
                     UmidadeMaxima = Linha.Umidade_relativa_ar_max_hora_anterior.toFixed(2);
-                    DirecaoVento = Linha.Direcao_horaria_vento_partir_norte.toFixed(2);
+                    DirecaoVento = Linha.Direcao_horaria_vento_partir_norte;
+                    DirecaoVento = parseFloat(DirecaoVento).toFixed(2);
                     Vento = Linha.Velocidade_horaria_vento.toFixed(2);
                     VentoRajada = Linha.Velocidade_rajada_vento.toFixed(2);
-                    SensacaoTermica = (13.12 + (0.6215 * Linha.Temp_ar) - (11.37 * Math.pow(Linha.Velocidade_horaria_vento, 0.16)) + (0.3965 * Linha.Temp_ar * Math.pow(Linha.Velocidade_horaria_vento, 0.16))).toFixed(2);
+                    SensacaoTermica = (13.12 + (0.6215 * Number(TemperaturaMedia)) - (11.37 * Math.pow(Number(Vento), 0.16)) + (0.3965 * Number(TemperaturaMedia) * Math.pow(Number(Vento), 0.16))).toFixed(2);
 
                     return true;
                 }
@@ -328,72 +456,57 @@ async function BuscarHoraNaPrevisao() {
     }
 }
 
-function BuscarMediaNaPrevisao(){
-    return true;
+async function BuscarMediaNaPrevisao(){
+    try {
+        // Busca os dados desejados na tabela de previsao
+        const response = await fetch('http://localhost:5500/previsao');
+        const data = await response.json();
+
+        // Exibe todos os dados coletados no console da aplicação
+        console.log('Dados da previsão:', data);
+
+        try {
+            // Filtra as linhas onde a variável Estacao é igual a "MG-01" e a variável Dia é igual a data selecionada pelo usuário
+            const LinhasDesejadasPrevisao = data.filter(linha => linha.Estacao === Estacao && linha.Dia === Data);
+
+            // Conta o número de linhas que cumprem com esses requisitos
+            const NumeroLinhasDesejadasPrevisao = LinhasDesejadasPrevisao.length;
+            if (NumeroLinhasDesejadasPrevisao >= 24) {
+                // Exibe no console o número de linhas que contém MG-01 como valor de Estacao
+                console.log('Número de linhas desejdas para os valores de dia e estação definidos pelo usuário:', NumeroLinhasDesejadasPrevisao);
+
+                TemperaturaMaximaAbsoluta = (Math.max(...LinhasDesejadasPrevisao.map(linha => linha.Temp_max_hora_anterior))).toFixed(2);
+                TemperaturaMinimaAbsoluta = (Math.min(...LinhasDesejadasPrevisao.map(linha => linha.Temp_min_hora_anterior))).toFixed(2);
+                ChuvaTotal = (LinhasDesejadasPrevisao.reduce((acc, linha) => acc + linha.Precipitacao_horario_total_mm, 0)).toFixed(2);
+                PressaoMediaAbsoluta = (LinhasDesejadasPrevisao.reduce((acc, linha) => acc + linha.PA_horaria_nivel_estacao, 0) / NumeroLinhasDesejadasPrevisao).toFixed(2);
+                UmidadeMediaAbsoluta = (LinhasDesejadasPrevisao.reduce((acc, linha) => acc + linha.Umidade_relativa_do_ar, 0) / NumeroLinhasDesejadasPrevisao).toFixed(2);
+                VentoMedio = (LinhasDesejadasPrevisao.reduce((acc, linha) => acc + linha.Velocidade_horaria_vento, 0) / NumeroLinhasDesejadasPrevisao).toFixed(2);
+                
+                return true;
+            } else {
+                console.log("Não foi possível encontrar nenhum resultado para a colte dos dados do dia requisitado pelo usuário.");
+                return false;
+            }
+        } catch (error) {
+            console.error('Erro ao processar as informações:', error.stack);
+            return false;
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        return false;
+    }
 }
 
 
 
 async function DefinirDados() {
-    if (BuscarHoraNoHistorico() && BuscarMediaNoHistorico()) {
+    if (await BuscarHoraNoHistorico() && await BuscarMediaNoHistorico()) {
         Fonte = 'Medição';
-
-        ChuvaTotal = 22;
-        TemperaturaMinimaAbsoluta = 11;
-        TemperaturaMaximaAbsoluta = 24;
-        PressaoMediaAbsoluta = 732;
-        UmidadeMediaAbsoluta = 77;
-        VentoMedio = 8.5;
-
-        Chuva = 6;
-        RadiacaoSolar = 600;
-        TemperaturaMinima = 12;
-        TemperaturaMedia = 15;
-        TemperaturaMaxima = 21;
-        TemperaturaPontoDeOrvalhoMinima = 2;
-        TemperaturaPontoDeOrvalhoMedia = 3;
-        TemperaturaPontoDeOrvalhoMaxima = 4;
-        PressaoMinima = 650;
-        PressaoMedia = 720;
-        PressaoMaxima = 831;
-        UmidadeMinima = 73;
-        UmidadeMedia = 75;
-        UmidadeMaxima = 76;
-        DirecaoVento = 192;
-        Vento = 7;
-        VentoRajada = 11;
-        SensacaoTermica = 24;
     } 
-    else if (BuscarMediaNaPrevisao()) {
-        ChuvaTotal = 22;
-        TemperaturaMinimaAbsoluta = 11;
-        TemperaturaMaximaAbsoluta = 24;
-        PressaoMediaAbsoluta = 732;
-        UmidadeMediaAbsoluta = 77;
-        VentoMedio = 8.5;
-
+    else if (await BuscarMediaNaPrevisao()) {
         // Descobre se pelo menos os valores da hora escolhida pelo usuário já foram coletados
-        if (BuscarHoraNoHistorico()) {
+        if (await BuscarHoraNoHistorico()) {
             Fonte = 'Medição/Previsão';
-
-            Chuva = 6;
-            RadiacaoSolar = 600;
-            TemperaturaMinima = 12;
-            TemperaturaMedia = 15;
-            TemperaturaMaxima = 21;
-            TemperaturaPontoDeOrvalhoMinima = 2;
-            TemperaturaPontoDeOrvalhoMedia = 3;
-            TemperaturaPontoDeOrvalhoMaxima = 4;
-            PressaoMinima = 650;
-            PressaoMedia = 720;
-            PressaoMaxima = 831;
-            UmidadeMinima = 73;
-            UmidadeMedia = 75;
-            UmidadeMaxima = 76;
-            DirecaoVento = 192;
-            Vento = 7;
-            VentoRajada = 11;
-            SensacaoTermica = 24;
         } 
         else if (await BuscarHoraNaPrevisao()) {
             Fonte = 'Previsão';
@@ -403,43 +516,7 @@ async function DefinirDados() {
         Fonte = 'Error';
         alert("Os dados requisitados por você não estão disponíveis no sistema. Altere os valores selecionados na configuração do site para tentar novamente.");
     }
-
-    console.log(Fonte);
 }
-
-//----------------------------------------------------------------------------------------------------------------
-
-async function AtualizarExibirGraficos() {
-    await DefinirDados();
-
-    MiniGraficoCircularSVG('#InfoPluviometria', ChuvaTotal, 50, CorGraficos, 'Pluviometria', IconeChuva, ' mm');
-    MiniGraficoCircularSVG('#InfoTemperaturaMinima', TemperaturaMinimaAbsoluta, 50, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
-    MiniGraficoCircularSVG('#InfoTemperaturaMaxima', TemperaturaMaximaAbsoluta, 50, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
-    MiniGraficoCircularSVG('#InfoPressaoAtmosferica', PressaoMediaAbsoluta, 1000, CorGraficos, 'Pressao Atmosferica', IconePressaoAtomsfericaMedia, ' mB');
-    MiniGraficoCircularSVG('#InfoUmidade', UmidadeMediaAbsoluta, 100, CorGraficos, 'Umidade', IconeUmidadeMedia, ' %');
-    MiniGraficoCircularSVG('#InfoVento', VentoMedio, 40, CorGraficos, 'Vento', IconeVento, ' m/s');
-
-    GraficoCircularSVG('#GraficoChuva', Chuva, 30, CorGraficos, 'Chuva', IconeChuva, ' mm');
-    GraficoCircularSVG('#GraficoRadiacaoSolar', RadiacaoSolar, 1000, CorGraficos, 'Radiacao Solar', IconeRadiacaoSolar, ' Kj');
-    GraficoCircularSVG('#GraficoSensacaoTermica', SensacaoTermica, 50, CorGraficos, 'Sensacao Termica', IconeSensacaoTermica, ' °C');
-    GraficoCircularSVG('#GraficoTemperaturaMinima', TemperaturaMinima, 50, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
-    GraficoCircularSVG('#GraficoTemperaturaMedia', TemperaturaMedia, 50, CorGraficos, 'Temperatura Media', IconeTemperaturaMedia, ' °C');
-    GraficoCircularSVG('#GraficoTemperaturaMaxima', TemperaturaMaxima, 50, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
-    GraficoCircularSVG('#GraficoPontoDeOrvalhoMinimo', TemperaturaPontoDeOrvalhoMinima, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Minima', IconePontoDeOrvalhoMinimo, ' °C');
-    GraficoCircularSVG('#GraficoPontoDeOrvalhoMedio', TemperaturaPontoDeOrvalhoMedia, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Media', IconePontoDeOrvalhoMedio, ' °C');
-    GraficoCircularSVG('#GraficoPontoDeOrvalhoMaximo', TemperaturaPontoDeOrvalhoMaxima, 20, CorGraficos, 'Temperatura do Ponto de Orvalho Maxima', IconePontoDeOrvalhoMaximo, ' °C');
-    GraficoCircularSVG('#GraficoPressaoMinima', PressaoMinima, 1000, CorGraficos, 'Pressao Atmosferica Minima', IconePressaoAtomsfericaMinima, ' mB');
-    GraficoCircularSVG('#GraficoPressaoMedia', PressaoMedia, 1000, CorGraficos, 'Pressao Atmosferica Media', IconePressaoAtomsfericaMedia, ' mB');
-    GraficoCircularSVG('#GraficoPressaoMaxima', PressaoMaxima, 1000, CorGraficos, 'Pressao Atmosferica Maxima', IconePressaoAtomsfericaMaxima, ' mB');
-    GraficoCircularSVG('#GraficoUmidadeDoArMinima', UmidadeMinima, 100, CorGraficos, 'Umidade do Ar Minima', IconeUmidadeMinima, ' %');
-    GraficoCircularSVG('#GraficoUmidadeDoArMedia', UmidadeMedia, 100, CorGraficos, 'Umidade do Ar Media', IconeUmidadeMedia, ' %');
-    GraficoCircularSVG('#GraficoUmidadeDoArMaxima', UmidadeMaxima, 100, CorGraficos, 'Umidade do Ar Maxima', IconeUmidadeMinima, ' %');
-    GraficoCircularSVG('#GraficoDirecaoVento', DirecaoVento, 360, CorGraficos, 'Direcao do Vento', IconeDirecaoVento, '°');
-    GraficoCircularSVG('#GraficoVelocidadeVento', Vento, 30, CorGraficos, 'Velocidade do Vento', IconeVento, ' m/s');
-    GraficoCircularSVG('#GraficoVelocidadeRajadaVento', VentoRajada, 30, CorGraficos, 'Velocidade de Rajada do Vento', IconeVentoRajada, ' m/s');
-}
-
-AtualizarExibirGraficos()
 
 //----------------------------------------------------------------------------------------------------------------
 
@@ -448,7 +525,41 @@ const DiaHTML = document.getElementById("Dia");
 const HoraHTML = document.getElementById("Hora");
 const FonteHTML = document.getElementById("Fonte");
 
-EstacaoHTML.textContent = Estacao;
-DiaHTML.textContent = 'Dia ' + Data;
-HoraHTML.textContent = 'Hora: ' + Hora;
-FonteHTML.textContent = 'Fonte dos dados: ' + Fonte;
+async function AtualizarExibirGraficos() {
+    await DefinirDados();
+
+    MiniGraficoCircularSVG('#InfoPluviometria', ChuvaTotal, 40, CorGraficos, 'Pluviometria', IconeChuva, ' mm');
+    MiniGraficoCircularSVG('#InfoTemperaturaMinima', TemperaturaMinimaAbsoluta, 35, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
+    MiniGraficoCircularSVG('#InfoTemperaturaMaxima', TemperaturaMaximaAbsoluta, 45, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
+    MiniGraficoCircularSVG('#InfoPressaoAtmosferica', PressaoMediaAbsoluta, 1000, CorGraficos, 'Pressao Atmosferica', IconePressaoAtomsfericaMedia, ' mB');
+    MiniGraficoCircularSVG('#InfoUmidade', UmidadeMediaAbsoluta, 100, CorGraficos, 'Umidade', IconeUmidadeMedia, ' %');
+    MiniGraficoCircularSVG('#InfoVento', VentoMedio, 40, CorGraficos, 'Vento', IconeVento, ' m/s');
+
+    GraficoCircularSVG('#GraficoChuva', Chuva, 30, CorGraficos, 'Chuva', IconeChuva, ' mm');
+    GraficoCircularSVG('#GraficoRadiacaoSolar', RadiacaoSolar, 4000, CorGraficos, 'Radiacao Solar', IconeRadiacaoSolar, ' Kj');
+    GraficoCircularSVG('#GraficoSensacaoTermica', SensacaoTermica, 40, CorGraficos, 'Sensacao Termica', IconeSensacaoTermica, ' °C');
+    GraficoCircularSVG('#GraficoTemperaturaMinima', TemperaturaMinima, 35, CorGraficos, 'Temperatura Minima', IconeTemperaturaMinima, ' °C');
+    GraficoCircularSVG('#GraficoTemperaturaMedia', TemperaturaMedia, 40, CorGraficos, 'Temperatura Media', IconeTemperaturaMedia, ' °C');
+    GraficoCircularSVG('#GraficoTemperaturaMaxima', TemperaturaMaxima, 45, CorGraficos, 'Temperatura Maxima', IconeTemperaturaMaxima, ' °C');
+    GraficoCircularSVG('#GraficoPontoDeOrvalhoMinimo', TemperaturaPontoDeOrvalhoMinima, 25, CorGraficos, 'Temperatura do Ponto de Orvalho Minima', IconePontoDeOrvalhoMinimo, ' °C');
+    GraficoCircularSVG('#GraficoPontoDeOrvalhoMedio', TemperaturaPontoDeOrvalhoMedia, 30, CorGraficos, 'Temperatura do Ponto de Orvalho Media', IconePontoDeOrvalhoMedio, ' °C');
+    GraficoCircularSVG('#GraficoPontoDeOrvalhoMaximo', TemperaturaPontoDeOrvalhoMaxima, 35, CorGraficos, 'Temperatura do Ponto de Orvalho Maxima', IconePontoDeOrvalhoMaximo, ' °C');
+    GraficoCircularSVG('#GraficoPressaoMinima', PressaoMinima, 1000, CorGraficos, 'Pressao Atmosferica Minima', IconePressaoAtomsfericaMinima, ' mB');
+    GraficoCircularSVG('#GraficoPressaoMedia', PressaoMedia, 1000, CorGraficos, 'Pressao Atmosferica Media', IconePressaoAtomsfericaMedia, ' mB');
+    GraficoCircularSVG('#GraficoPressaoMaxima', PressaoMaxima, 1000, CorGraficos, 'Pressao Atmosferica Maxima', IconePressaoAtomsfericaMaxima, ' mB');
+    GraficoCircularSVG('#GraficoUmidadeDoArMinima', UmidadeMinima, 100, CorGraficos, 'Umidade do Ar Minima', IconeUmidadeMinima, ' %');
+    GraficoCircularSVG('#GraficoUmidadeDoArMedia', UmidadeMedia, 100, CorGraficos, 'Umidade do Ar Media', IconeUmidadeMedia, ' %');
+    GraficoCircularSVG('#GraficoUmidadeDoArMaxima', UmidadeMaxima, 100, CorGraficos, 'Umidade do Ar Maxima', IconeUmidadeMinima, ' %');
+    GraficoCircularSVG('#GraficoDirecaoVento', DirecaoVento, 360, CorGraficos, 'Direcao do Vento', IconeDirecaoVento, '°');
+    GraficoCircularSVG('#GraficoVelocidadeVento', Vento, 10, CorGraficos, 'Velocidade do Vento', IconeVento, ' m/s');
+    GraficoCircularSVG('#GraficoVelocidadeRajadaVento', VentoRajada, 15, CorGraficos, 'Velocidade de Rajada do Vento', IconeVentoRajada, ' m/s');
+
+    EstacaoHTML.textContent = Estacao;
+    DiaHTML.textContent = 'Dia ' + Data;
+    HoraHTML.textContent = 'Hora: ' + Hora;
+    FonteHTML.textContent = 'Fonte dos dados: ' + Fonte;
+}
+
+AtualizarExibirGraficos()
+
+//----------------------------------------------------------------------------------------------------------------

@@ -1,4 +1,3 @@
-/*Responsável por deixar uma rolagem suave na página*/
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -11,7 +10,6 @@ const lenis = new Lenis({
   infinite: false,
 });
 
-//pega o valor do scroll
 lenis.on("scroll", (e) => {
   console.log(e);
 });
