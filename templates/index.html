@@ -732,13 +732,13 @@
       <div class="bx-one">
         <h3>Estilos:</h3>
         <div class="caixa-select-color">
-          <span class="circle-color">
+          <span class="circle-color" data-color="yellow">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
           </span>
-          <span class="circle-color">
+          <span class="circle-color" data-color="green">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
           </span>
-          <span class="circle-color">
+          <span class="circle-color" data-color="blue">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
           </span>
         </div>
@@ -775,9 +775,9 @@
       <div class="bx-two">
         <select id="nome" name="nome" class="input-field">
             <option value="">Selecione...</option>
-            <option value="Simba">Baixo</option>
-            <option value="Tom">Médio</option>
-            <option value="Luna">Alto</option>
+            <option value="Baixo">Baixo</option>
+            <option value="Medio">Médio</option>
+            <option value="Alto">Alto</option>
         </select>
       </div>
 
@@ -808,5 +808,53 @@
     <script src="/assets/js/comentarios.js"></script>
     <!--Codigo de scroll suave: <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.22/bundled/lenis.min.js"></script>
     <script src="/assets/js/rolagem.js"></script>-->
+
+    <!--
+    <script>
+      // Teste do JS de coleta das informações da aba de configuração da página
+      document.addEventListener('DOMContentLoaded', function () {
+        const closeConfig = document.querySelector('.fechar-config');
+
+        // Adiciona evento de clique aos círculos de cor
+        const estiloElementos = document.querySelectorAll('.circle-color');
+        estiloElementos.forEach((elemento) => {
+            elemento.addEventListener('click', () => {
+                estiloElementos.forEach((el) => el.classList.remove('selected')); // Remove a seleção de todos
+                elemento.classList.add('selected'); // Marca o círculo clicado como selecionado
+            });
+        });
+
+        closeConfig.addEventListener('click', () => {
+            // Coleta os valores dos inputs
+            const temperatura = document.getElementById('range').value;
+            const tamanho = document.getElementById('range2').value;
+            const estacao = document.querySelector('select#nome').value;
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+
+            // Coleta a cor selecionada (estilo)
+            let estilo = 'Nenhum';
+            estiloElementos.forEach((elemento) => {
+                if (elemento.classList.contains('selected')) {
+                    estilo = elemento.getAttribute('data-color') || 'Cor não definida'; // Captura a cor do atributo data-color
+                }
+            });
+
+            // Printa as informações no console
+            console.log(`Temperatura: ${temperatura}`);
+            console.log(`Tamanho: ${tamanho}`);
+            console.log(`Estação: ${estacao}`);
+            console.log(`Data: ${data}`);
+            console.log(`Hora: ${hora}`);
+            console.log(`Estilo: ${estilo}`);
+
+            // Fecha a aba de configurações
+            const glassBackground = document.querySelector('.glass-background');
+            glassBackground.classList.remove('visible');
+            closeConfig.closest('.pai-ct-config').classList.remove('open');
+        });
+    });
+    </script>
+    -->
   </body>
 </html>
