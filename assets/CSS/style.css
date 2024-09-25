@@ -351,15 +351,6 @@ section {
   height: auto;
 }
 .bx-pontos {
-<<<<<<< HEAD
-  width: 875px;
-  height: 455px;
-  margin-right: 60px;
-  margin-bottom: 85px;
-}
-.bl-pontos {
-  width: 100%;
-=======
   width: auto;
   height: auto;
   padding: 10px;
@@ -369,18 +360,13 @@ section {
 }
 .bl-pontos {
   width: auto;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   min-height: 390px;
 }
 .box-pontos {
   width: 750px;
   height: 110px;
   background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(145,227,252,1) 25%, rgba(0,140,198,1) 50%, rgb(255, 255, 255) 75%, rgb(65, 208, 255) 100%);
-<<<<<<< HEAD
-  margin: 12px 0;
-=======
   margin: 10px 0;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.868);
 }
@@ -412,252 +398,6 @@ section {
   background-color: #2c2c2cb4;
 }
 
-<<<<<<< HEAD
-.btn-config {
-  width: 45px;
-  height: 45px;
-  position: fixed;
-  top: 80px;
-  right: 15px;
-  background-color: #ffffffeb;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  fill: #1b1a1ad7;
-  display: grid;
-  place-items: center;
-}
-.btn-config:hover {
-  background-color: #d6f8ff;
-  fill: #111;
-}
-.btn-config:hover > .svg-config {
-  transform: rotate(360deg);
-  transition: all 0.8s ease-in-out;
-}
-.svg-config {
-  width: 30px;
-  height: 30px;
-  transition: all 0.3s ease-in-out;
-}
-
-.fechar-config {
-  background-color: #010500da;
-  width: 25px;
-  height: 70px;
-  z-index: 80;
-  margin-top: 30px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.fechar-config svg {
-  fill: white;
-  width: 25px;
-  height: 25px;
-  transition: all 0.2s ease-in;
-  cursor: pointer;
-}
-.fechar-config svg:hover {
-  fill: rgb(72, 148, 255);
-}
-.pai-ct-config {
-  width: auto;
-  height: auto;
-  top: 0;
-  right: -300px; /* Começa fora da tela */
-  position: fixed;
-  z-index: 31;
-  display: flex;
-  align-items: center;
-  transition: right 0.3s ease-in-out;
-  opacity: 0;
-  pointer-events: none; /* Impede cliques quando está invisível */
-}
-.pai-ct-config.open {
-  right: 0; /* Move para dentro da tela */
-  opacity: 1;
-  pointer-events: all; /* Permite interação */
-}
-.ct-config {
-  width: 300px;
-  height: 100vh;
-  transition: all 0.3s ease-in-out;
-  background: rgba(255, 255, 255, 0.643);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12.2px);
-  -webkit-backdrop-filter: blur(12.2px);
-  padding-top: 4rem;
-  border-left: 4px solid #010500da;
-}
-.ct-config h1 {background-color: #0fddaa;
-  font-size: 1.5rem;
-  text-align: center;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  width: 100%;
-  height: auto;
-  padding: 10px 0;
-  background-color: #010500da;
-  border-top: 0.3em solid rgb(0, 118, 252);
- border-right: 0.5em solid rgba(0, 135, 253, 0);
- border-bottom: 0.3em solid rgb(0, 118, 252);
- border-left: 0.5em solid rgba(0, 135, 253, 0);
-}
-.ct-config .title-line, 
-.ct-config .title-line2, 
-.ct-config .title-line3, 
-.ct-config .title-line4, 
-.ct-config .title-line5{
-  font-size: 1.1rem;
-  letter-spacing: 0.1rem;
-  text-align: center;
-  display: grid;
-  place-items: center;
-  color: #000000;
-  margin-top: 10px;
-}
-
-.ct-config .title-line::after,
-.ct-config .title-line2::after,
-.ct-config .title-line3::after,
-.ct-config .title-line4::after,
-.ct-config .title-line5::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  right: 0;
-  background-color: #ffffff60;
-  z-index: 1;
-}
-.ct-config .title-line::after {
-  width: 25%;
-}
-.ct-config .title-line2::after {
-  width: 15%;
-}
-.ct-config .title-line3::after {
-  width: 25%;
-}
-.ct-config .title-line4::after {
-  width: 25%;
-}
-.ct-config .title-line5::after {
-  width: 25%;
-}
-
-.ct-config .title-line::before,
-.ct-config .title-line2::before,
-.ct-config .title-line3::before,
-.ct-config .title-line4::before,
-.ct-config .title-line5::before {
-  content: "";
-  left: 0;
-  position: absolute;
-  height: 2px;
-  background-color: #ffffff60;
-}
-.ct-config .title-line::before {
-  width: 25%;
-}
-.ct-config .title-line2::before {
-  width: 15%;
-}
-.ct-config .title-line3::before {
-  width: 25%;
-}
-.ct-config .title-line4::before {
-  width: 25%;
-}
-.ct-config .title-line5::before {
-  width: 25%;
-}
-
-.ct-config h3 {
-  font-size: 1.1rem;
-  letter-spacing: 0.1rem;
-  margin-left: 5px;
-  color: #000000bd;
-}
-
-.bx-note2 {
-  font-size: 1.9rem;
-  transition: 0.2s ease-in-out;
-}
-
-.c3:hover > .bx-note2 {
-  font-size: 1.7rem;
-}
-
-.ct-config .bx-one,
-.ct-config .bx-two,
-.ct-config .bx-tree {
-  width: auto;
-  height: auto;
-  padding: 4px 0;
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  /*background-color: #62ff00;*/
-}
-.ct-config .bx-two {
-  justify-content: space-evenly;
-}
-.ct-config .bx-tree {
-  flex-direction: column;
-}
-
-
-.caixa-select-color {
-  width: 100%;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.caixa-select-chatbot {
-  padding: 5px 0;
-  width: 100%;
-  min-height: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-}
-.circle-color {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #0000003a;
-  margin: 0 14px;
-  padding: 4px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-} 
-.circle-color:nth-last-of-type(1):hover {
-  border: 2px solid #0e54a3;
-}
-.circle-color:nth-last-of-type(2):hover {
-  border: 2px solid #beff95;
-}
-.circle-color:nth-last-of-type(3):hover {
-  border: 2px solid #ffee8d;
-}
-.circle-color:nth-child(1) {
-  fill: #fbd500;
-} 
-.circle-color:nth-child(2) {
-  fill: #62ff00;
-} 
-.circle-color:nth-child(3) {
-  fill: #3589e9;
-} 
-
-=======
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 .input-field {
   padding: 6px 4px;
   border: 1px solid #000000;
@@ -794,27 +534,6 @@ input[type=range]:active::-ms-fill-upper {
   background-color: #fd6060;
 }
 
-<<<<<<< HEAD
-.glass-background {
-  background: rgba(255, 255, 255, 0.112);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  width: 100vw;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 10;
-  opacity: 0;
-  pointer-events: none; /* Impede cliques quando está invisível */
-  transition: opacity 0.3s ease-in-out;
-}
-.glass-background.visible {
-  opacity: 1;
-  pointer-events: all; /* Permite cliques */
-}
-
-=======
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 .vw5 h1 {
   font-size: 3rem;
 }
@@ -1081,17 +800,11 @@ input[type=range]:active::-ms-fill-upper {
 }
 
 .vw6 .text {
-<<<<<<< HEAD
-  font-size: 1.5rem;
-  margin-top: 5px;
-  color: #999;
-=======
   font-size: 1.3rem;
   margin-top: 20px;
   color: #999;
   text-align: center;
   width: 80%;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 }
 
 .carousel-container {
@@ -1170,11 +883,7 @@ input[type=range]:active::-ms-fill-upper {
 .bx-btn-video {
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
-  width: 25%;
-=======
   min-width: 25%;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   height: 30px;
   position: absolute;
   top: 20px;
@@ -1195,13 +904,10 @@ input[type=range]:active::-ms-fill-upper {
   color: rgba(0, 0, 0, 0.799);
   width: 100%;
   height: 29px;
-<<<<<<< HEAD
-=======
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 7px;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   border: none;
   text-decoration: none;
   cursor: pointer;

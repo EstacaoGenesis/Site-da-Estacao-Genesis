@@ -230,30 +230,13 @@ const IconeVentoRajada = '/assets/SVG/VentoForte.svg';
 //----------------------------------------------------------------------------------------------------------------
 
 let Estacao = "MG-01";
-<<<<<<< HEAD
-let Data = "30/12/2022";
-let Hora = "21:00:00";
-=======
 let Data = "20/12/2022";
 let Hora = "12:00:00";
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 let CorGraficos = 'rgb(255,0,160)';
 
 
 
 /*
-<<<<<<< HEAD
-function coletarDados() {
-    Estacao = document.getElementById("nome").value;
-    Data = document.getElementById("data").value;
-    Hora = document.getElementById("hora").value;
-}
-
-document.getElementById("nome").onchange = coletarDados;
-document.getElementById("data").onchange = coletarDados;
-document.getElementById("hora").onchange = coletarDados;
-*/
-=======
 let Estacao, Data, Hora, Estilo, CorGraficos;
 document.addEventListener('DOMContentLoaded', function () {
     const closeConfig = document.querySelector('.fechar-config');
@@ -303,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function () {
         closeConfig.closest('.pai-ct-config').classList.remove('open');
     });
 });*/
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 
 
 
@@ -317,11 +299,7 @@ let Chuva, RadiacaoSolar, TemperaturaMinima, TemperaturaMedia, TemperaturaMaxima
 async function BuscarHoraNoHistorico() {
     try {
         // Busca os dados desejados na tabela de historico
-<<<<<<< HEAD
-        const response = await fetch(`http://localhost:5500/historico?dia=${Data}&estacao=${Estacao}`);
-=======
         const response = await fetch(`http://localhost:5500/historico?dia=${Data}`);
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
         
         // Verifica se a resposta foi bem-sucedida
         if (!response.ok) {

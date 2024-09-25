@@ -22,11 +22,7 @@ line {
   width: 95%;
   height: auto;
   margin-top: 2px;
-<<<<<<< HEAD
-  background: linear-gradient(317deg, rgba(154, 52, 237, 0.407) 0%, rgba(255,255,255,0.4766281512605042) 100%);
-=======
   background: linear-gradient(317deg, rgba(139, 0, 252, 0.407) 0%, rgba(255,255,255,0.4766281512605042) 100%);
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 13.5px );
   -webkit-backdrop-filter: blur( 13.5px );
@@ -45,13 +41,8 @@ line {
 
 .bl-sensor{
   width: 14.5%;
-<<<<<<< HEAD
-  height: 175px;
-  background-color: rgba(2, 1, 35, 0.884);
-=======
   height: 200px;
   background-color: rgba(38, 55, 88, 0.884);
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   margin: 12px 0px;
@@ -82,11 +73,7 @@ line {
 }
 .bl-infos {
   min-width: 350px;
-<<<<<<< HEAD
-  height: 140px;
-=======
   height: 160px;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   background: linear-gradient(90deg, rgba(172,68,255,1) 0%, rgba(119,0,255,1) 100%);
   border-radius: 10px;
   padding-left: 10px;
@@ -96,13 +83,8 @@ line {
   justify-content: space-evenly;
 }
 .Graficos{
-<<<<<<< HEAD
-  width: 800px;
-  height: 140px;
-=======
   width: 840px;
   height: 160px;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   display: flex;
   background: linear-gradient(90deg, rgba(124,0,255,1) 0%, rgba(218,129,255,1) 50%, rgba(244,0,255,1) 100%);
   align-items: center;
@@ -110,15 +92,9 @@ line {
   border-radius: 10px;
 }
 .mini-bl-sensor{
-<<<<<<< HEAD
-  width: 14.5%;
-  height: 125px;
-  background-color: rgba(2, 1, 35, 0.884);
-=======
   width: 15.5%;
   height: 148px;
   background-color: rgba(44, 43, 59, 0.726);
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 5px;
@@ -130,19 +106,12 @@ line {
 
 .Grafico{
   max-width: 250px;
-<<<<<<< HEAD
-  margin: 0;
-=======
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   padding: 0;
   pointer-events: none;
   user-select: none;
   height: auto;
-<<<<<<< HEAD
-=======
   /*background-color: black;*/
   height: auto !important;
->>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 }
 .Mini-Grafico{
   max-width: 150px;
