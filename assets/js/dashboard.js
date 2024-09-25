@@ -230,13 +230,19 @@ const IconeVentoRajada = '/assets/SVG/VentoForte.svg';
 //----------------------------------------------------------------------------------------------------------------
 
 let Estacao = "MG-01";
+<<<<<<< HEAD
 let Data = "30/12/2022";
 let Hora = "21:00:00";
+=======
+let Data = "20/12/2022";
+let Hora = "12:00:00";
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 let CorGraficos = 'rgb(255,0,160)';
 
 
 
 /*
+<<<<<<< HEAD
 function coletarDados() {
     Estacao = document.getElementById("nome").value;
     Data = document.getElementById("data").value;
@@ -247,6 +253,57 @@ document.getElementById("nome").onchange = coletarDados;
 document.getElementById("data").onchange = coletarDados;
 document.getElementById("hora").onchange = coletarDados;
 */
+=======
+let Estacao, Data, Hora, Estilo, CorGraficos;
+document.addEventListener('DOMContentLoaded', function () {
+    const closeConfig = document.querySelector('.fechar-config');
+
+    // Adiciona evento de clique aos círculos de cor
+    const estiloElementos = document.querySelectorAll('.circle-color');
+    estiloElementos.forEach((elemento) => {
+        elemento.addEventListener('click', () => {
+            estiloElementos.forEach((el) => el.classList.remove('selected')); // Remove a seleção de todos
+            elemento.classList.add('selected'); // Marca o círculo clicado como selecionado
+        });
+    });
+
+    closeConfig.addEventListener('click', () => {
+        // Coleta os valores dos inputs
+        const Estacao = document.querySelector('estacao').value;
+        const Data = document.getElementById('data').value;
+        const Hora = document.getElementById('hora').value;
+
+        // Coleta a cor selecionada (estilo)
+        let Estilo = 'Nenhum';
+        estiloElementos.forEach((elemento) => {
+            if (elemento.classList.contains('selected')) {
+                Estilo = elemento.getAttribute('data-color') || 'Cor não definida'; // Captura a cor do atributo data-color
+            }
+        });
+
+        // Printa as informações no console
+        console.log(`Estação: ${Estacao}`);
+        console.log(`Data: ${Data}`);
+        console.log(`Hora: ${Hora}`);
+        console.log(`Estilo: ${Estilo}`);
+
+        if(Estilo == "yellow"){
+            let CorGraficos = 'rgb(255,0,160)';
+        }
+        else if(Estilo == "green"){
+            let CorGraficos = 'rgb(255,0,160)';
+        }
+        else if(Estilo == "blue"){
+            let CorGraficos = 'rgb(255,0,160)';
+        }
+
+        // Fecha a aba de configurações
+        const glassBackground = document.querySelector('.glass-background');
+        glassBackground.classList.remove('visible');
+        closeConfig.closest('.pai-ct-config').classList.remove('open');
+    });
+});*/
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 
 
 
@@ -260,7 +317,11 @@ let Chuva, RadiacaoSolar, TemperaturaMinima, TemperaturaMedia, TemperaturaMaxima
 async function BuscarHoraNoHistorico() {
     try {
         // Busca os dados desejados na tabela de historico
+<<<<<<< HEAD
         const response = await fetch(`http://localhost:5500/historico?dia=${Data}&estacao=${Estacao}`);
+=======
+        const response = await fetch(`http://localhost:5500/historico?dia=${Data}`);
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
         
         // Verifica se a resposta foi bem-sucedida
         if (!response.ok) {

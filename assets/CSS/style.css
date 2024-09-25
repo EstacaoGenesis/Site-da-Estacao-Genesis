@@ -351,6 +351,7 @@ section {
   height: auto;
 }
 .bx-pontos {
+<<<<<<< HEAD
   width: 875px;
   height: 455px;
   margin-right: 60px;
@@ -358,13 +359,28 @@ section {
 }
 .bl-pontos {
   width: 100%;
+=======
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin-right: 60px;
+  margin-bottom: 85px;
+  margin-top: 90px;
+}
+.bl-pontos {
+  width: auto;
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   min-height: 390px;
 }
 .box-pontos {
   width: 750px;
   height: 110px;
   background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(145,227,252,1) 25%, rgba(0,140,198,1) 50%, rgb(255, 255, 255) 75%, rgb(65, 208, 255) 100%);
+<<<<<<< HEAD
   margin: 12px 0;
+=======
+  margin: 10px 0;
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.868);
 }
@@ -396,6 +412,7 @@ section {
   background-color: #2c2c2cb4;
 }
 
+<<<<<<< HEAD
 .btn-config {
   width: 45px;
   height: 45px;
@@ -639,6 +656,8 @@ section {
   fill: #3589e9;
 } 
 
+=======
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 .input-field {
   padding: 6px 4px;
   border: 1px solid #000000;
@@ -775,6 +794,7 @@ input[type=range]:active::-ms-fill-upper {
   background-color: #fd6060;
 }
 
+<<<<<<< HEAD
 .glass-background {
   background: rgba(255, 255, 255, 0.112);
   -webkit-backdrop-filter: blur(6px);
@@ -793,6 +813,8 @@ input[type=range]:active::-ms-fill-upper {
   pointer-events: all; /* Permite cliques */
 }
 
+=======
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 .vw5 h1 {
   font-size: 3rem;
 }
@@ -1059,9 +1081,17 @@ input[type=range]:active::-ms-fill-upper {
 }
 
 .vw6 .text {
+<<<<<<< HEAD
   font-size: 1.5rem;
   margin-top: 5px;
   color: #999;
+=======
+  font-size: 1.3rem;
+  margin-top: 20px;
+  color: #999;
+  text-align: center;
+  width: 80%;
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
 }
 
 .carousel-container {
@@ -1140,7 +1170,11 @@ input[type=range]:active::-ms-fill-upper {
 .bx-btn-video {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
   width: 25%;
+=======
+  min-width: 25%;
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   height: 30px;
   position: absolute;
   top: 20px;
@@ -1161,6 +1195,13 @@ input[type=range]:active::-ms-fill-upper {
   color: rgba(0, 0, 0, 0.799);
   width: 100%;
   height: 29px;
+<<<<<<< HEAD
+=======
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7px;
+>>>>>>> 1bc8754 (Modificacoes do dia 24/09 realizadas)
   border: none;
   text-decoration: none;
   cursor: pointer;
